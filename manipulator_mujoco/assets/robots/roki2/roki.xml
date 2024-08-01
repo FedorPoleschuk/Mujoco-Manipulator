@@ -1,0 +1,633 @@
+<mujoco model="roki">
+	<compiler angle="radian" autolimits="true" />
+	<option integrator="implicit" timestep="0.002" cone="pyramidal" solver="Newton" />
+	<default>
+		<joint damping="0.41" armature="0.045" frictionloss="0.03"/>
+		<default class="visual">
+			<geom group="2" type="mesh" contype="0" conaffinity="0" />
+		</default>
+		<default class="collision">
+			<geom group="3" type="mesh" />
+		</default>
+	</default>
+	<asset>
+		<material name="Aluminum_-_Satin" specular="0.5" shininess="0.5" rgba="0.60784 0.60784 0.64706 1.0" />
+		<material name="Aluminum_-_Anodized_Glossy_(Grey)" specular="0.5" shininess="0.5" rgba="0.17255 0.17255 0.17255 1.0" />
+		<material name="Stainless_Steel_-_Polished" specular="0.5" shininess="0.5" rgba="0.796078 0.796078 0.796078 1.0" />
+		<material name="PA_12_-_Nylon_-_PA_603-CF_(with_EOS_P_3D_Printers)" specular="0.5" shininess="0.5" rgba="0.147059 0.147059 0.147059 1.0" />
+		<material name="Carbon_Fiber_-_Plain" specular="0.5" shininess="0.5" rgba="0.098039 0.098039 0.098039 1.0" />
+		<material name="Opaque(255,0,0)" specular="0.5" shininess="0.5" rgba="1.000000 0.000000 0.000000 1.0" />
+		<material name="Titanium_-_Polished" specular="0.5" shininess="0.5" rgba="0.749020 0.729412 0.701961 1.0" />
+		<material name="Steel_-_Satin" specular="0.5" shininess="0.5" rgba="0.627451 0.627451 0.627451 1.0" />
+		<material name="Plastic_-_Translucent_Glossy_(Red)" specular="0.5" shininess="0.5" rgba="0.768627 0.207843 0.152941 1.0" />
+		<material name="Silver_-_Polished" specular="0.5" shininess="0.5" rgba="0.984314 0.980392 0.960784 1.0" />
+		<material name="Generic" specular="0.5" shininess="0.5" rgba="0.098039 0.098039 0.098039 1.0" />
+		<material name="ABS_(White)" specular="0.5" shininess="0.5" rgba="0.964706 0.964706 0.952941 1.0" />
+		<material name="Opaque(0,0,255)" specular="0.5" shininess="0.5" rgba="0.000000 0.000000 1.000000 1.0" />
+		<material name="Opaque(0,128,0)" specular="0.5" shininess="0.5" rgba="0.000000 0.501961 0.000000 1.0" />
+		<material name="Rubber_-_Soft" specular="0.5" shininess="0.5" rgba="0.152941 0.152941 0.152941 1.0" />
+		<material name="Glass_(Clear)" specular="1" shininess="1"  reflectance="1" rgba="0.1 0.1 0.1 0.95" />
+		<material name="Opaque(76,76,76)" specular="0.5" shininess="0.5" rgba="0.298039 0.298039 0.298039 1.0" />
+		<material name="Opaque(192,255,255)" specular="1" reflectance="1" shininess="1" rgba="0.1 0.10000 0.10000 0.5" />
+
+		<mesh name="arm_v1_1_mesh_0" file="arm_v1_1_mesh_0.obj" />
+		<mesh name="arm_v1__1__1_mesh_0_collision_0" file="arm_v1__1__1_mesh_0_collision_0.obj" />
+		<mesh name="arm_v1__1__1_mesh_0_collision_1" file="arm_v1__1__1_mesh_0_collision_1.obj" />
+		<mesh name="arm_v1__1__1_mesh_0_collision_2" file="arm_v1__1__1_mesh_0_collision_2.obj" />
+		<mesh name="arm_v1__1__1_mesh_0_collision_3" file="arm_v1__1__1_mesh_0_collision_3.obj" />
+		<mesh name="arm_v1__1__1_mesh_0_collision_4" file="arm_v1__1__1_mesh_0_collision_4.obj" />
+		<mesh name="arm_v1__1__1_mesh_0_collision_5" file="arm_v1__1__1_mesh_0_collision_5.obj" />
+		<mesh name="arm_v1__1__1_mesh_0_collision_6" file="arm_v1__1__1_mesh_0_collision_6.obj" />
+		<mesh name="arm_v1__1__1_mesh_0_collision_7" file="arm_v1__1__1_mesh_0_collision_7.obj" />
+		<mesh name="arm_v1__1__1_mesh_0_collision_8" file="arm_v1__1__1_mesh_0_collision_8.obj" />
+		<mesh name="arm_v1__1__1_mesh_0_collision_9" file="arm_v1__1__1_mesh_0_collision_9.obj" />
+		<mesh name="arm_v1__1__1_mesh_0_collision_10" file="arm_v1__1__1_mesh_0_collision_10.obj" />
+		<mesh name="arm_v1__1__1_mesh_0_collision_11" file="arm_v1__1__1_mesh_0_collision_11.obj" />
+		<mesh name="arm_v1__1__1_mesh_0_collision_12" file="arm_v1__1__1_mesh_0_collision_12.obj" />
+		<mesh name="Carbon_Mov_Finger_021_v1_1_mesh_collision_0" file="Carbon_Mov_Finger_021_v1_1_mesh_collision_0.obj" />
+		<mesh name="Carbon_Mov_Finger_021_v1_1_mesh_collision_1" file="Carbon_Mov_Finger_021_v1_1_mesh_collision_1.obj" />
+		<mesh name="Carbon_Mov_Finger_021_v1_1_mesh_collision_2" file="Carbon_Mov_Finger_021_v1_1_mesh_collision_2.obj" />
+		<mesh name="Carbon_Mov_Finger_021_v1_1_mesh_collision_3" file="Carbon_Mov_Finger_021_v1_1_mesh_collision_3.obj" />
+		<mesh name="Carbon_Mov_Finger_021_v1_1_mesh_collision_4" file="Carbon_Mov_Finger_021_v1_1_mesh_collision_4.obj" />
+		<mesh name="Carbon_Mov_Finger_021_v1_1_mesh_collision_5" file="Carbon_Mov_Finger_021_v1_1_mesh_collision_5.obj" />
+		<mesh name="Carbon_Mov_Finger_021_v1_1_mesh_collision_6" file="Carbon_Mov_Finger_021_v1_1_mesh_collision_6.obj" />
+		<mesh name="Carbon_Mov_Finger_021_v1_1_mesh_collision_7" file="Carbon_Mov_Finger_021_v1_1_mesh_collision_7.obj" />
+		<mesh name="Carbon_Mov_Finger_021_v1_1_mesh_collision_8" file="Carbon_Mov_Finger_021_v1_1_mesh_collision_8.obj" />
+		<mesh name="Carbon_Mov_Finger_021_v1_1_mesh_collision_9" file="Carbon_Mov_Finger_021_v1_1_mesh_collision_9.obj" />
+		<mesh name="Carbon_Mov_Finger_021_v1_1_mesh_collision_10" file="Carbon_Mov_Finger_021_v1_1_mesh_collision_10.obj" />
+		<mesh name="Carbon_Mov_Finger_021_v1_1_mesh_collision_11" file="Carbon_Mov_Finger_021_v1_1_mesh_collision_11.obj" />
+		<mesh name="Carbon_Mov_Finger_021_v1_1_mesh_collision_12" file="Carbon_Mov_Finger_021_v1_1_mesh_collision_12.obj" />
+		<mesh name="Carbon_Mov_Finger_021_v1_1_mesh_collision_13" file="Carbon_Mov_Finger_021_v1_1_mesh_collision_13.obj" />
+		<mesh name="Carbon_Mov_Finger_021_v1_1_mesh_collision_14" file="Carbon_Mov_Finger_021_v1_1_mesh_collision_14.obj" />
+		<mesh name="Carbon_Mov_Finger_021_v1_1_mesh_collision_15" file="Carbon_Mov_Finger_021_v1_1_mesh_collision_15.obj" />
+		<mesh name="Carbon_Mov_Finger_021_v1_1_mesh_collision_16" file="Carbon_Mov_Finger_021_v1_1_mesh_collision_16.obj" />
+		<mesh name="Carbon_Mov_Finger_021_v1_1_mesh_collision_17" file="Carbon_Mov_Finger_021_v1_1_mesh_collision_17.obj" />
+		<mesh name="Carbon_Mov_Finger_021_v1_1_mesh_collision_18" file="Carbon_Mov_Finger_021_v1_1_mesh_collision_18.obj" />
+		<mesh name="Carbon_Mov_Finger_021_v1_1_mesh_collision_19" file="Carbon_Mov_Finger_021_v1_1_mesh_collision_19.obj" />
+		<mesh name="Carbon_Mov_Finger_021_v1_1_mesh_collision_20" file="Carbon_Mov_Finger_021_v1_1_mesh_collision_20.obj" />
+		<mesh name="arm_v1_1_mesh_1" file="arm_v1_1_mesh_1.obj" />
+		<mesh name="arm_v1_1_mesh_2" file="arm_v1_1_mesh_2.obj" />
+		<mesh name="arm_v1_1_mesh_3" file="arm_v1_1_mesh_3.obj" />
+		<mesh name="arm_v1_1_mesh_4" file="arm_v1_1_mesh_4.obj" />
+		<mesh name="arm_v1__1__1_mesh_0" file="arm_v1__1__1_mesh_0.obj" />
+		<mesh name="arm_v1__1__1_mesh_1" file="arm_v1__1__1_mesh_1.obj" />
+		<mesh name="arm_v1__1__1_mesh_2" file="arm_v1__1__1_mesh_2.obj" />
+		<mesh name="arm_v1__1__1_mesh_3" file="arm_v1__1__1_mesh_3.obj" />
+		<mesh name="arm_v1__1__1_mesh_4" file="arm_v1__1__1_mesh_4.obj" />
+		<mesh name="base_link_1_mesh_0" file="base_link_1_mesh_0.obj" />
+		<mesh name="base_link_1_mesh_1" file="base_link_1_mesh_1.obj" />
+		<mesh name="base_link_1_mesh_2" file="base_link_1_mesh_2.obj" />
+		<mesh name="base_link_1_mesh_3" file="base_link_1_mesh_3.obj" />
+		<mesh name="base_link_1_mesh_4" file="base_link_1_mesh_4.obj" />
+		<mesh name="base_link_1_mesh_5" file="base_link_1_mesh_5.obj" />
+		<mesh name="base_link_1_mesh_6" file="base_link_1_mesh_6.obj" />
+		<mesh name="base_link_1_mesh_7" file="base_link_1_mesh_7.obj" />
+		<mesh name="base_link_1_mesh_8" file="base_link_1_mesh_8.obj" />
+		<mesh name="base_link_1_mesh_9" file="base_link_1_mesh_9.obj" />
+		<mesh name="base_link_1_mesh_10" file="base_link_1_mesh_10.obj" />
+		<mesh name="base_link_1_mesh_11" file="base_link_1_mesh_11.obj" />
+		<mesh name="Carbon_Mov_Finger_021_v1_1_mesh" file="Carbon_Mov_Finger_021_v1_1_mesh.obj" />
+		<mesh name="Carbon_Mov_Finger_021_v1__1__1_mesh" file="Carbon_Mov_Finger_021_v1__1__1_mesh.obj" />
+		<mesh name="Dual_Servo_Al_022_3_mesh_0" file="Dual_Servo_Al_022_3_mesh_0.obj" />
+		<mesh name="Dual_Servo_Al_022_3_mesh_1" file="Dual_Servo_Al_022_3_mesh_1.obj" />
+		<mesh name="Dual_Servo_Al_022_3_mesh_2" file="Dual_Servo_Al_022_3_mesh_2.obj" />
+		<mesh name="Dual_Servo_Al_022_3_mesh_3" file="Dual_Servo_Al_022_3_mesh_3.obj" />
+		<mesh name="Dual_Servo_Al_022_3_mesh_4" file="Dual_Servo_Al_022_3_mesh_4.obj" />
+		<mesh name="Dual_Servo_Al_022_3_mesh_5" file="Dual_Servo_Al_022_3_mesh_5.obj" />
+		<mesh name="Dual_Servo_Al_022__1__1_mesh_0" file="Dual_Servo_Al_022__1__1_mesh_0.obj" />
+		<mesh name="Dual_Servo_Al_022__1__1_mesh_1" file="Dual_Servo_Al_022__1__1_mesh_1.obj" />
+		<mesh name="Dual_Servo_Al_022__1__1_mesh_2" file="Dual_Servo_Al_022__1__1_mesh_2.obj" />
+		<mesh name="Dual_Servo_Al_022__1__1_mesh_3" file="Dual_Servo_Al_022__1__1_mesh_3.obj" />
+		<mesh name="Dual_Servo_Al_022__1__1_mesh_4" file="Dual_Servo_Al_022__1__1_mesh_4.obj" />
+		<mesh name="Dual_Servo_Al_022__1__1_mesh_5" file="Dual_Servo_Al_022__1__1_mesh_5.obj" />
+		<mesh name="Elbow_Bracket_01_1_mesh_0" file="Elbow_Bracket_01_1_mesh_0.obj" />
+		<mesh name="Elbow_Bracket_01_1_mesh_1" file="Elbow_Bracket_01_1_mesh_1.obj" />
+		<mesh name="Elbow_Bracket_01_1_mesh_2" file="Elbow_Bracket_01_1_mesh_2.obj" />
+		<mesh name="Elbow_Bracket_01_1_mesh_3" file="Elbow_Bracket_01_1_mesh_3.obj" />
+		<mesh name="Elbow_Bracket_01_1_mesh_4" file="Elbow_Bracket_01_1_mesh_4.obj" />
+		<mesh name="Elbow_Bracket_01_1__1_mesh_0" file="Elbow_Bracket_01_1__1_mesh_0.obj" />
+		<mesh name="Elbow_Bracket_01_1__1_mesh_1" file="Elbow_Bracket_01_1__1_mesh_1.obj" />
+		<mesh name="Elbow_Bracket_01_1__1_mesh_2" file="Elbow_Bracket_01_1__1_mesh_2.obj" />
+		<mesh name="Elbow_Bracket_01_1__1_mesh_3" file="Elbow_Bracket_01_1__1_mesh_3.obj" />
+		<mesh name="Elbow_Bracket_01_1__1_mesh_4" file="Elbow_Bracket_01_1__1_mesh_4.obj" />
+		<mesh name="Hand_Football_Player_05_1_mesh" file="Hand_Football_Player_05_1_mesh.obj" />
+		<mesh name="Hand_Football_Player_05__1__1_mesh" file="Hand_Football_Player_05__1__1_mesh.obj" />
+		<mesh name="Hip_Shin_Carbon_1__1_mesh" file="Hip_Shin_Carbon_1__1_mesh.obj" />
+		<mesh name="Hip_Shin_Carbon_1__1__1_mesh" file="Hip_Shin_Carbon_1__1__1_mesh.obj" />
+		<mesh name="Hip_Shin_Carbon_2_mesh" file="Hip_Shin_Carbon_2_mesh.obj" />
+		<mesh name="Hip_Shin_Carbon_2__1_mesh" file="Hip_Shin_Carbon_2__1_mesh.obj" />
+		<mesh name="Knee_1__1_mesh_0" file="Knee_1__1_mesh_0.obj" />
+		<mesh name="Knee_1__1_mesh_1" file="Knee_1__1_mesh_1.obj" />
+		<mesh name="Knee_1__1_mesh_2" file="Knee_1__1_mesh_2.obj" />
+		<mesh name="Knee_1__1_mesh_3" file="Knee_1__1_mesh_3.obj" />
+		<mesh name="Knee_1__1_mesh_4" file="Knee_1__1_mesh_4.obj" />
+		<mesh name="Knee_1__1__1_mesh_0" file="Knee_1__1__1_mesh_0.obj" />
+		<mesh name="Knee_1__1__1_mesh_1" file="Knee_1__1__1_mesh_1.obj" />
+		<mesh name="Knee_1__1__1_mesh_2" file="Knee_1__1__1_mesh_2.obj" />
+		<mesh name="Knee_1__1__1_mesh_3" file="Knee_1__1__1_mesh_3.obj" />
+		<mesh name="Knee_1__1__1_mesh_4" file="Knee_1__1__1_mesh_4.obj" />
+		<mesh name="Robot_Football_Player_SKS_2501_Head_B0348_Head_Base_06v1_1_mesh_0" file="Robot_Football_Player_SKS_2501_Head_B0348_Head_Base_06v1_1_mesh_0.obj" />
+		<mesh name="Robot_Football_Player_SKS_2501_Head_B0348_Head_Base_06v1_1_mesh_1" file="Robot_Football_Player_SKS_2501_Head_B0348_Head_Base_06v1_1_mesh_1.obj" />
+		<mesh name="Robot_Football_Player_SKS_2501_Head_B0348_Head_Base_06v1_1_mesh_2" file="Robot_Football_Player_SKS_2501_Head_B0348_Head_Base_06v1_1_mesh_2.obj" />
+		<mesh name="Robot_Football_Player_SKS_2501_Head_B0348_Head_Base_06v1_1_mesh_3" file="Robot_Football_Player_SKS_2501_Head_B0348_Head_Base_06v1_1_mesh_3.obj" />
+		<mesh name="Robot_Football_Player_SKS_2501_Head_B0348_Head_Base_06v1_1_mesh_4" file="Robot_Football_Player_SKS_2501_Head_B0348_Head_Base_06v1_1_mesh_4.obj" />
+		<mesh name="Robot_Football_Player_SKS_2501_Head_B0348_Head_Base_06v1_1_mesh_5" file="Robot_Football_Player_SKS_2501_Head_B0348_Head_Base_06v1_1_mesh_5.obj" />
+		<mesh name="Robot_Football_Player_SKS_2501_Head_B0348_Head_Base_06v1_1_mesh_6" file="Robot_Football_Player_SKS_2501_Head_B0348_Head_Base_06v1_1_mesh_6.obj" />
+		<mesh name="Robot_Football_Player_SKS_2501_Head_B0348_Head_Base_06v1_1_mesh_7" file="Robot_Football_Player_SKS_2501_Head_B0348_Head_Base_06v1_1_mesh_7.obj" />
+		<mesh name="Robot_Football_Player_SKS_2501_Head_B0348_Head_Base_06v1_1_mesh_8" file="Robot_Football_Player_SKS_2501_Head_B0348_Head_Base_06v1_1_mesh_8.obj" />
+		<mesh name="Robot_Football_Player_SKS_2501_Head_B0348_Head_Base_06v1_1_mesh_9" file="Robot_Football_Player_SKS_2501_Head_B0348_Head_Base_06v1_1_mesh_9.obj" />
+		<mesh name="Robot_Football_Player_SKS_2501_Head_B0348_Head_Base_06v1_1_mesh_10" file="Robot_Football_Player_SKS_2501_Head_B0348_Head_Base_06v1_1_mesh_10.obj" />
+		<mesh name="Robot_Football_Player_SKS_2501_Head_B0348_Head_Base_06v1_1_mesh_11" file="Robot_Football_Player_SKS_2501_Head_B0348_Head_Base_06v1_1_mesh_11.obj" />
+		<mesh name="Robot_Football_Player_SKS_2501_Neck_Carbonv2_1_mesh" file="Robot_Football_Player_SKS_2501_Neck_Carbonv2_1_mesh.obj" />
+		<mesh name="roki2_simlify_Dual_Servo_Al_022Copyv1_2_mesh_0" file="roki2_simlify_Dual_Servo_Al_022Copyv1_2_mesh_0.obj" />
+		<mesh name="roki2_simlify_Dual_Servo_Al_022Copyv1_2_mesh_1" file="roki2_simlify_Dual_Servo_Al_022Copyv1_2_mesh_1.obj" />
+		<mesh name="roki2_simlify_Dual_Servo_Al_022Copyv1_2_mesh_2" file="roki2_simlify_Dual_Servo_Al_022Copyv1_2_mesh_2.obj" />
+		<mesh name="roki2_simlify_Dual_Servo_Al_022Copyv1_2_mesh_3" file="roki2_simlify_Dual_Servo_Al_022Copyv1_2_mesh_3.obj" />
+		<mesh name="roki2_simlify_Dual_Servo_Al_022Copyv1_2_mesh_4" file="roki2_simlify_Dual_Servo_Al_022Copyv1_2_mesh_4.obj" />
+		<mesh name="roki2_simlify_Dual_Servo_Al_022Copyv1_2_mesh_5" file="roki2_simlify_Dual_Servo_Al_022Copyv1_2_mesh_5.obj" />
+		<mesh name="roki2_simlify_Dual_Servo_Al_022Copyv1__1__1_mesh_0" file="roki2_simlify_Dual_Servo_Al_022Copyv1__1__1_mesh_0.obj" />
+		<mesh name="roki2_simlify_Dual_Servo_Al_022Copyv1__1__1_mesh_1" file="roki2_simlify_Dual_Servo_Al_022Copyv1__1__1_mesh_1.obj" />
+		<mesh name="roki2_simlify_Dual_Servo_Al_022Copyv1__1__1_mesh_2" file="roki2_simlify_Dual_Servo_Al_022Copyv1__1__1_mesh_2.obj" />
+		<mesh name="roki2_simlify_Dual_Servo_Al_022Copyv1__1__1_mesh_3" file="roki2_simlify_Dual_Servo_Al_022Copyv1__1__1_mesh_3.obj" />
+		<mesh name="roki2_simlify_Dual_Servo_Al_022Copyv1__1__1_mesh_4" file="roki2_simlify_Dual_Servo_Al_022Copyv1__1__1_mesh_4.obj" />
+		<mesh name="roki2_simlify_Dual_Servo_Al_022Copyv1__1__1_mesh_5" file="roki2_simlify_Dual_Servo_Al_022Copyv1__1__1_mesh_5.obj" />
+		<mesh name="roki_Robot_Football_Player_SKS_2501_Servov12_10_v1_1_mesh_0" file="roki_Robot_Football_Player_SKS_2501_Servov12_10_v1_1_mesh_0.obj" />
+		<mesh name="roki_Robot_Football_Player_SKS_2501_Servov12_10_v1_1_mesh_1" file="roki_Robot_Football_Player_SKS_2501_Servov12_10_v1_1_mesh_1.obj" />
+		<mesh name="roki_Robot_Football_Player_SKS_2501_Servov12_10_v1_1_mesh_2" file="roki_Robot_Football_Player_SKS_2501_Servov12_10_v1_1_mesh_2.obj" />
+		<mesh name="roki_Robot_Football_Player_SKS_2501_Servov12_10_v1_1_mesh_3" file="roki_Robot_Football_Player_SKS_2501_Servov12_10_v1_1_mesh_3.obj" />
+		<mesh name="roki_Robot_Football_Player_SKS_2501_Servov12_10__v1_1__1_mesh_0" file="roki_Robot_Football_Player_SKS_2501_Servov12_10__v1_1__1_mesh_0.obj" />
+		<mesh name="roki_Robot_Football_Player_SKS_2501_Servov12_10__v1_1__1_mesh_1" file="roki_Robot_Football_Player_SKS_2501_Servov12_10__v1_1__1_mesh_1.obj" />
+		<mesh name="roki_Robot_Football_Player_SKS_2501_Servov12_10__v1_1__1_mesh_2" file="roki_Robot_Football_Player_SKS_2501_Servov12_10__v1_1__1_mesh_2.obj" />
+		<mesh name="roki_Robot_Football_Player_SKS_2501_Servov12_10__v1_1__1_mesh_3" file="roki_Robot_Football_Player_SKS_2501_Servov12_10__v1_1__1_mesh_3.obj" />
+		<mesh name="Shoe_Flex_1_mesh_0" file="Shoe_Flex_1_mesh_0.obj" />
+		<mesh name="Shoe_Flex_1_mesh_1" file="Shoe_Flex_1_mesh_1.obj" />
+		<mesh name="Shoe_Flex_1__1_mesh_0" file="Shoe_Flex_1__1_mesh_0.obj" />
+		<mesh name="Shoe_Flex_1__1_mesh_1" file="Shoe_Flex_1__1_mesh_1.obj" />
+		<mesh name="U_Dual_Lever_Carbon_1__1_mesh" file="U_Dual_Lever_Carbon_1__1_mesh.obj" />
+		<mesh name="U_Dual_Lever_Carbon_2_mesh" file="U_Dual_Lever_Carbon_2_mesh.obj" />
+		<mesh name="U_Lever_Carbon_1__1_mesh" file="U_Lever_Carbon_1__1_mesh.obj" />
+		<mesh name="U_Lever_Carbon_2__1_mesh" file="U_Lever_Carbon_2__1_mesh.obj" />
+		<mesh name="Waist_1_mesh_0" file="Waist_1_mesh_0.obj" />
+		<mesh name="Waist_1_mesh_1" file="Waist_1_mesh_1.obj" />
+		<mesh name="Waist_1_mesh_2" file="Waist_1_mesh_2.obj" />
+		<mesh name="Waist_1_mesh_3" file="Waist_1_mesh_3.obj" />
+		<mesh name="Waist_1_mesh_4" file="Waist_1_mesh_4.obj" />
+	</asset>
+	<worldbody>
+		
+		<body name="base_link_1" pos="0 0 0.29">
+
+			<inertial fullinertia="0.00065536 0.00083575 0.00122054 9.2e-07 4.771e-05 -3.8e-07" pos="-0.005217639693257018 0.026389449639372318 0.049232642874940134" mass="0.6978470671486154" />
+			<body name="Waist_1">
+				<inertial fullinertia="0.00018851 4.543e-05 0.0001986 1e-08 1.32e-06 8e-08" pos="0.016101981711886433 0.02638333912223064 -0.015680735770714896" mass="0.15761065350197656" />
+				<body name="U_Dual_Lever_Carbon_1__1">
+					<inertial fullinertia="1.49e-06 4.91e-06 4.25e-06 0.0 1e-08 -0.0" pos="0.030743688479663852 0.06636024961101011 -0.04421422710091413" mass="0.009545203780731138" />
+					<body name="roki2_simlify_Dual_Servo_Al_022Copyv1__1__1">
+						<inertial fullinertia="3.395e-05 8.578e-05 7.521e-05 1.42e-06 -7.13e-06 -2e-08" pos="0.012765765020667485 0.06539910778474373 -0.07708496279571363" mass="0.12106708753454967" />
+						<body name="Hip_Shin_Carbon_2">
+							<inertial fullinertia="1.839e-05 1.272e-05 1.22e-05 -0.0 1.04e-06 0.0" pos="0.03524926580029416 0.06596024961096447 -0.11047387084448523" mass="0.022625400240065388" />
+							<body name="Knee_1__1">
+								<inertial fullinertia="5.027e-05 5.349e-05 3.317e-05 -2e-08 2e-08 -5e-08" pos="0.03647606243605075 0.06457116491309876 -0.16496666388195236" mass="0.10930325968922582" />
+								<body name="Hip_Shin_Carbon_1__1__1">
+									<inertial fullinertia="1.839e-05 1.272e-05 1.22e-05 0.0 -1.04e-06 -0.0" pos="0.03524926580029208 0.06596024961096303 -0.2193261291555133" mass="0.022625400240065405" />
+									<body name="roki2_simlify_Dual_Servo_Al_022Copyv1_2">
+										<inertial fullinertia="3.395e-05 8.578e-05 7.521e-05 -1.42e-06 7.13e-06 -2e-08" pos="0.012765765020670188 0.06632139143718363 -0.25271503720428584" mass="0.12106708753454967" />
+										<body name="Shoe_Flex_1__1">
+											<inertial fullinertia="2.096e-05 4.685e-05 6.627e-05 -4.6e-07 2.5e-07 7e-07" pos="0.03470368593995767 0.07613222148829209 -0.2843262010633865" mass="0.05098521202956298" />
+											<joint name="left_ankle_roll_joint" type="hinge" pos="0.005046 0.06536 -0.2639" range="-0.523599 0.523599" axis="1.0 0.0 -0.0" />
+											<geom pos="0.035546 0.15676 -0.2877" quat="0.0 0.707107 0.707107 0.0" mesh="Shoe_Flex_1__1_mesh_0" material="Generic" class="visual" />
+											<geom pos="0.035546 0.15676 -0.2877" quat="0.0 0.707107 0.707107 0.0" mesh="Shoe_Flex_1__1_mesh_1" material="Rubber_-_Soft" class="visual" />
+											<geom type="box" pos='0.034 0.08 -0.283' rgba="0 0 0 0" size="0.055 0.037 0.005"  class="collision"/>
+										</body>
+										<joint name="left_ankle_pitch_joint" type="hinge" pos="0.027146 0.04596 -0.2639" range="-0.698132 0.872665" axis="-0.0 1.0 -0.0" />
+										<geom pos="-0.017754 0.06536 -0.27521" quat="-0.5 0.5 0.5 -0.5" mesh="roki2_simlify_Dual_Servo_Al_022Copyv1_2_mesh_0" material="Aluminum_-_Satin" class="visual" />
+										<geom pos="-0.017754 0.06536 -0.27521" quat="-0.5 0.5 0.5 -0.5" mesh="roki2_simlify_Dual_Servo_Al_022Copyv1_2_mesh_1" material="Carbon_Fiber_-_Plain" class="visual" />
+										<geom pos="-0.017754 0.06536 -0.27521" quat="-0.5 0.5 0.5 -0.5" mesh="roki2_simlify_Dual_Servo_Al_022Copyv1_2_mesh_2" material="PA_12_-_Nylon_-_PA_603-CF_(with_EOS_P_3D_Printers)" class="visual" />
+										<geom pos="-0.017754 0.06536 -0.27521" quat="-0.5 0.5 0.5 -0.5" mesh="roki2_simlify_Dual_Servo_Al_022Copyv1_2_mesh_3" material="Steel_-_Satin" class="visual" />
+										<geom pos="-0.017754 0.06536 -0.27521" quat="-0.5 0.5 0.5 -0.5" mesh="roki2_simlify_Dual_Servo_Al_022Copyv1_2_mesh_4" material="Aluminum_-_Anodized_Glossy_(Grey)" class="visual" />
+										<geom pos="-0.017754 0.06536 -0.27521" quat="-0.5 0.5 0.5 -0.5" mesh="roki2_simlify_Dual_Servo_Al_022Copyv1_2_mesh_5" material="Titanium_-_Polished" class="visual" />
+										<geom pos="-0.017754 0.06536 -0.27521" quat="-0.5 0.5 0.5 -0.5" mesh="roki2_simlify_Dual_Servo_Al_022Copyv1_2_mesh_0" class="collision" />
+										<geom pos="-0.017754 0.06536 -0.27521" quat="-0.5 0.5 0.5 -0.5" mesh="roki2_simlify_Dual_Servo_Al_022Copyv1_2_mesh_1" class="collision" />
+										<geom pos="-0.017754 0.06536 -0.27521" quat="-0.5 0.5 0.5 -0.5" mesh="roki2_simlify_Dual_Servo_Al_022Copyv1_2_mesh_2" class="collision" />
+										<geom pos="-0.017754 0.06536 -0.27521" quat="-0.5 0.5 0.5 -0.5" mesh="roki2_simlify_Dual_Servo_Al_022Copyv1_2_mesh_3" class="collision" />
+										<geom pos="-0.017754 0.06536 -0.27521" quat="-0.5 0.5 0.5 -0.5" mesh="roki2_simlify_Dual_Servo_Al_022Copyv1_2_mesh_4" class="collision" />
+										<geom pos="-0.017754 0.06536 -0.27521" quat="-0.5 0.5 0.5 -0.5" mesh="roki2_simlify_Dual_Servo_Al_022Copyv1_2_mesh_5" class="collision" />
+									</body>
+									<joint name="left_bottom_knee_joint" type="hinge" pos="0.027146 0.04596 -0.1814" range="-0.087266 2.094395" axis="0.0 1.0 -0.0" />
+									<geom pos="-0.014104 0.06596 -0.2399" quat="0.5 -0.5 -0.5 0.5" material="Generic" mesh="Hip_Shin_Carbon_1__1__1_mesh" class="visual" />
+								</body>
+								<joint name="left_upper_knee_joint" type="hinge" pos="0.027146 0.04596 -0.1484" range="-0.087266 2.094395" axis="0.0 1.0 -0.0" />
+								<geom pos="-0.042654 -0.13364 -0.1164" quat="-0.5 0.5 0.5 -0.5" mesh="Knee_1__1_mesh_0" material="Generic" class="visual" />
+								<geom pos="-0.042654 -0.13364 -0.1164" quat="-0.5 0.5 0.5 -0.5" mesh="Knee_1__1_mesh_1" material="PA_12_-_Nylon_-_PA_603-CF_(with_EOS_P_3D_Printers)" class="visual" />
+								<geom pos="-0.042654 -0.13364 -0.1164" quat="-0.5 0.5 0.5 -0.5" mesh="Knee_1__1_mesh_2" material="Steel_-_Satin" class="visual" />
+								<geom pos="-0.042654 -0.13364 -0.1164" quat="-0.5 0.5 0.5 -0.5" mesh="Knee_1__1_mesh_3" material="Aluminum_-_Anodized_Glossy_(Grey)" class="visual" />
+								<geom pos="-0.042654 -0.13364 -0.1164" quat="-0.5 0.5 0.5 -0.5" mesh="Knee_1__1_mesh_4" material="Titanium_-_Polished" class="visual" />
+								<geom pos="-0.042654 -0.13364 -0.1164" quat="-0.5 0.5 0.5 -0.5" mesh="Knee_1__1_mesh_0" class="collision" />
+								<geom pos="-0.042654 -0.13364 -0.1164" quat="-0.5 0.5 0.5 -0.5" mesh="Knee_1__1_mesh_1" class="collision" />
+								<geom pos="-0.042654 -0.13364 -0.1164" quat="-0.5 0.5 0.5 -0.5" mesh="Knee_1__1_mesh_2" class="collision" />
+								<geom pos="-0.042654 -0.13364 -0.1164" quat="-0.5 0.5 0.5 -0.5" mesh="Knee_1__1_mesh_3" class="collision" />
+								<geom pos="-0.042654 -0.13364 -0.1164" quat="-0.5 0.5 0.5 -0.5" mesh="Knee_1__1_mesh_4" class="collision" />
+							</body>
+							<joint name="left_hip_pitch_joint" type="hinge" pos="0.027146 0.04596 -0.0659" range="-1.745329 2.094395" axis="-0.0 1.0 -0.0" />
+							<geom pos="-0.014104 0.06596 -0.0899" quat="0.5 0.5 -0.5 -0.5" material="Generic" mesh="Hip_Shin_Carbon_2_mesh" class="visual" />
+						</body>
+						<joint name="left_hip_roll_joint" type="hinge" pos="0.005046 0.06636 -0.0659" range="-0.523599 0.523599" axis="1.0 0.0 -0.0" />
+						<geom pos="-0.017754 0.06636 -0.05459" quat="-0.5 -0.5 0.5 0.5" mesh="roki2_simlify_Dual_Servo_Al_022Copyv1__1__1_mesh_0" material="Aluminum_-_Satin" class="visual" />
+						<geom pos="-0.017754 0.06636 -0.05459" quat="-0.5 -0.5 0.5 0.5" mesh="roki2_simlify_Dual_Servo_Al_022Copyv1__1__1_mesh_1" material="Carbon_Fiber_-_Plain" class="visual" />
+						<geom pos="-0.017754 0.06636 -0.05459" quat="-0.5 -0.5 0.5 0.5" mesh="roki2_simlify_Dual_Servo_Al_022Copyv1__1__1_mesh_2" material="PA_12_-_Nylon_-_PA_603-CF_(with_EOS_P_3D_Printers)" class="visual" />
+						<geom pos="-0.017754 0.06636 -0.05459" quat="-0.5 -0.5 0.5 0.5" mesh="roki2_simlify_Dual_Servo_Al_022Copyv1__1__1_mesh_3" material="Steel_-_Satin" class="visual" />
+						<geom pos="-0.017754 0.06636 -0.05459" quat="-0.5 -0.5 0.5 0.5" mesh="roki2_simlify_Dual_Servo_Al_022Copyv1__1__1_mesh_4" material="Aluminum_-_Anodized_Glossy_(Grey)" class="visual" />
+						<geom pos="-0.017754 0.06636 -0.05459" quat="-0.5 -0.5 0.5 0.5" mesh="roki2_simlify_Dual_Servo_Al_022Copyv1__1__1_mesh_5" material="Titanium_-_Polished" class="visual" />
+						<geom pos="-0.017754 0.06636 -0.05459" quat="-0.5 -0.5 0.5 0.5" mesh="roki2_simlify_Dual_Servo_Al_022Copyv1__1__1_mesh_0" class="collision" />
+						<geom pos="-0.017754 0.06636 -0.05459" quat="-0.5 -0.5 0.5 0.5" mesh="roki2_simlify_Dual_Servo_Al_022Copyv1__1__1_mesh_1" class="collision" />
+						<geom pos="-0.017754 0.06636 -0.05459" quat="-0.5 -0.5 0.5 0.5" mesh="roki2_simlify_Dual_Servo_Al_022Copyv1__1__1_mesh_2" class="collision" />
+						<geom pos="-0.017754 0.06636 -0.05459" quat="-0.5 -0.5 0.5 0.5" mesh="roki2_simlify_Dual_Servo_Al_022Copyv1__1__1_mesh_3" class="collision" />
+						<geom pos="-0.017754 0.06636 -0.05459" quat="-0.5 -0.5 0.5 0.5" mesh="roki2_simlify_Dual_Servo_Al_022Copyv1__1__1_mesh_4" class="collision" />
+						<geom pos="-0.017754 0.06636 -0.05459" quat="-0.5 -0.5 0.5 0.5" mesh="roki2_simlify_Dual_Servo_Al_022Copyv1__1__1_mesh_5" class="collision" />
+					</body>
+					<joint name="left_hip_yaw_joint" type="hinge" pos="0.026146 0.06636 -0.0339" range="-0.523599 0.523599" axis="0.0 -0.0 -1.0" />
+					<geom pos="0.026146 0.07106 -0.0339" quat="-0.5 0.5 -0.5 0.5" material="Generic" mesh="U_Dual_Lever_Carbon_1__1_mesh" class="visual" />
+				</body>
+				<body name="U_Dual_Lever_Carbon_2">
+					<inertial fullinertia="1.49e-06 4.91e-06 4.25e-06 0.0 1e-08 -0.0" pos="0.0307436884796639 -0.013639750388989 -0.04421422710091381" mass="0.009545203780731142" />
+					<body name="Dual_Servo_Al_022__1__1">
+						<inertial fullinertia="3.393e-05 8.576e-05 7.52e-05 -1.42e-06 -7.1e-06 2e-08" pos="0.012764806398114281 -0.012678871123369372 -0.0770915315491341" mass="0.12106708754110855" />
+						<body name="Hip_Shin_Carbon_1__1">
+							<inertial fullinertia="1.839e-05 1.272e-05 1.22e-05 -0.0 1.04e-06 -0.0" pos="0.03524926580029177 -0.013239750389035935 -0.11047387084448478" mass="0.022625400240065405" />
+							<body name="Knee_1__1__1">
+								<inertial fullinertia="5.027e-05 5.349e-05 3.317e-05 2e-08 2e-08 5e-08" pos="0.03647606243602147 -0.012050665691172526 -0.16496666388200665" mass="0.10930325968922545" />
+								<body name="Hip_Shin_Carbon_2__1">
+									<inertial fullinertia="1.839e-05 1.272e-05 1.22e-05 0.0 -1.04e-06 -0.0" pos="0.03524926580029728 -0.013439750389040179 -0.21932612915550867" mass="0.022625400240065388" />
+									<body name="Dual_Servo_Al_022_3">
+										<inertial fullinertia="3.393e-05 8.576e-05 7.52e-05 1.42e-06 7.1e-06 2e-08" pos="0.012764806398116203 -0.014000629654708118 -0.25270846845085876" mass="0.12106708754110855" />
+										<body name="Shoe_Flex_1">
+											<inertial fullinertia="2.096e-05 4.685e-05 6.627e-05 4.6e-07 2.5e-07 -7e-07" pos="0.03468194597235554 -0.0238057528073623 -0.284177265989225" mass="0.05098531070774809" />
+											<joint name="right_ankle_roll_joint" type="hinge" pos="0.053624 -0.013034 -0.263751" range="-0.523599 0.523599" axis="1.0 -0.0 -0.0" />
+											<geom pos="0.035524 -0.027234 -0.287551" quat="0.707107 -0.0 0.0 0.707107" mesh="Shoe_Flex_1_mesh_0" material="Generic" class="visual" />
+											<geom pos="0.035524 -0.027234 -0.287551" quat="0.707107 -0.0 0.0 0.707107" mesh="Shoe_Flex_1_mesh_1" material="Rubber_-_Soft" class="visual" />
+											<geom type="box" pos='0.034 -0.028 -0.283' rgba="0 0 0 0" size="0.055 0.037 0.005"  class="collision" />
+										</body>
+										<joint name="right_ankle_pitch_joint" type="hinge" pos="0.027146 -0.03344 -0.2639" range="-0.785398 1.22173" axis="-0.0 1.0 -0.0" />
+										<geom pos="-0.017754 -0.01304 -0.27521" quat="0.5 -0.5 -0.5 0.5" mesh="Dual_Servo_Al_022_3_mesh_0" material="Aluminum_-_Satin" class="visual" />
+										<geom pos="-0.017754 -0.01304 -0.27521" quat="0.5 -0.5 -0.5 0.5" mesh="Dual_Servo_Al_022_3_mesh_1" material="Generic" class="visual" />
+										<geom pos="-0.017754 -0.01304 -0.27521" quat="0.5 -0.5 -0.5 0.5" mesh="Dual_Servo_Al_022_3_mesh_2" material="PA_12_-_Nylon_-_PA_603-CF_(with_EOS_P_3D_Printers)" class="visual" />
+										<geom pos="-0.017754 -0.01304 -0.27521" quat="0.5 -0.5 -0.5 0.5" mesh="Dual_Servo_Al_022_3_mesh_3" material="Steel_-_Satin" class="visual" />
+										<geom pos="-0.017754 -0.01304 -0.27521" quat="0.5 -0.5 -0.5 0.5" mesh="Dual_Servo_Al_022_3_mesh_4" material="Aluminum_-_Anodized_Glossy_(Grey)" class="visual" />
+										<geom pos="-0.017754 -0.01304 -0.27521" quat="0.5 -0.5 -0.5 0.5" mesh="Dual_Servo_Al_022_3_mesh_5" material="Titanium_-_Polished" class="visual" />
+										<geom pos="-0.017754 -0.01304 -0.27521" quat="0.5 -0.5 -0.5 0.5" mesh="Dual_Servo_Al_022_3_mesh_0" class="collision" />
+										<geom pos="-0.017754 -0.01304 -0.27521" quat="0.5 -0.5 -0.5 0.5" mesh="Dual_Servo_Al_022_3_mesh_1" class="collision" />
+										<geom pos="-0.017754 -0.01304 -0.27521" quat="0.5 -0.5 -0.5 0.5" mesh="Dual_Servo_Al_022_3_mesh_2" class="collision" />
+										<geom pos="-0.017754 -0.01304 -0.27521" quat="0.5 -0.5 -0.5 0.5" mesh="Dual_Servo_Al_022_3_mesh_3" class="collision" />
+										<geom pos="-0.017754 -0.01304 -0.27521" quat="0.5 -0.5 -0.5 0.5" mesh="Dual_Servo_Al_022_3_mesh_4" class="collision" />
+										<geom pos="-0.017754 -0.01304 -0.27521" quat="0.5 -0.5 -0.5 0.5" mesh="Dual_Servo_Al_022_3_mesh_5" class="collision" />
+									</body>
+									<joint name="right_bottom_knee_joint" type="hinge" pos="0.027146 0.00656 -0.1814" range="-0.087266 2.094395" axis="0.0 1.0 0.0" />
+									<geom pos="-0.014104 -0.01344 -0.2399" quat="0.5 -0.5 -0.5 0.5" material="Generic" mesh="Hip_Shin_Carbon_2__1_mesh" class="visual" />
+								</body>
+								<joint name="right_upper_knee_joint" type="hinge" pos="0.027146 -0.03324 -0.1484" range="-0.087266 2.094395" axis="0.0 1.0 -0.0" />
+								<geom pos="-0.042654 -0.165358 -0.1164" quat="0.5 -0.5 -0.5 0.5" mesh="Knee_1__1__1_mesh_0" material="Generic" class="visual" />
+								<geom pos="-0.042654 -0.165358 -0.1164" quat="0.5 -0.5 -0.5 0.5" mesh="Knee_1__1__1_mesh_1" material="Aluminum_-_Anodized_Glossy_(Grey)" class="visual" />
+								<geom pos="-0.042654 -0.165358 -0.1164" quat="0.5 -0.5 -0.5 0.5" mesh="Knee_1__1__1_mesh_2" material="Steel_-_Satin" class="visual" />
+								<geom pos="-0.042654 -0.165358 -0.1164" quat="0.5 -0.5 -0.5 0.5" mesh="Knee_1__1__1_mesh_3" material="PA_12_-_Nylon_-_PA_603-CF_(with_EOS_P_3D_Printers)" class="visual" />
+								<geom pos="-0.042654 -0.165358 -0.1164" quat="0.5 -0.5 -0.5 0.5" mesh="Knee_1__1__1_mesh_4" material="Titanium_-_Polished" class="visual" />
+								<geom pos="-0.042654 -0.165358 -0.1164" quat="0.5 -0.5 -0.5 0.5" mesh="Knee_1__1__1_mesh_0" class="collision" />
+								<geom pos="-0.042654 -0.165358 -0.1164" quat="0.5 -0.5 -0.5 0.5" mesh="Knee_1__1__1_mesh_1" class="collision" />
+								<geom pos="-0.042654 -0.165358 -0.1164" quat="0.5 -0.5 -0.5 0.5" mesh="Knee_1__1__1_mesh_2" class="collision" />
+								<geom pos="-0.042654 -0.165358 -0.1164" quat="0.5 -0.5 -0.5 0.5" mesh="Knee_1__1__1_mesh_3" class="collision" />
+								<geom pos="-0.042654 -0.165358 -0.1164" quat="0.5 -0.5 -0.5 0.5" mesh="Knee_1__1__1_mesh_4" class="collision" />
+							</body>
+							<joint name="right_hip_pitch_joint" type="hinge" pos="0.027146 0.00676 -0.0659" range="-1.745329 2.094395" axis="0.0 1.0 -0.0" />
+							<geom pos="-0.014104 -0.01324 -0.0899" quat="0.5 0.5 -0.5 -0.5" material="Generic" mesh="Hip_Shin_Carbon_1__1_mesh" class="visual" />
+						</body>
+						<joint name="right_hip_roll_joint" type="hinge" pos="0.005046 -0.01364 -0.0659" range="-0.523599 0.523599" axis="1.0 0.0 -0.0" />
+						<geom pos="-0.017754 -0.01364 -0.05459" quat="0.5 0.5 -0.5 -0.5" mesh="Dual_Servo_Al_022__1__1_mesh_0" material="Aluminum_-_Satin" class="visual" />
+						<geom pos="-0.017754 -0.01364 -0.05459" quat="0.5 0.5 -0.5 -0.5" mesh="Dual_Servo_Al_022__1__1_mesh_1" material="Generic" class="visual" />
+						<geom pos="-0.017754 -0.01364 -0.05459" quat="0.5 0.5 -0.5 -0.5" mesh="Dual_Servo_Al_022__1__1_mesh_2" material="PA_12_-_Nylon_-_PA_603-CF_(with_EOS_P_3D_Printers)" class="visual" />
+						<geom pos="-0.017754 -0.01364 -0.05459" quat="0.5 0.5 -0.5 -0.5" mesh="Dual_Servo_Al_022__1__1_mesh_3" material="Steel_-_Satin" class="visual" />
+						<geom pos="-0.017754 -0.01364 -0.05459" quat="0.5 0.5 -0.5 -0.5" mesh="Dual_Servo_Al_022__1__1_mesh_4" material="Aluminum_-_Anodized_Glossy_(Grey)" class="visual" />
+						<geom pos="-0.017754 -0.01364 -0.05459" quat="0.5 0.5 -0.5 -0.5" mesh="Dual_Servo_Al_022__1__1_mesh_5" material="Titanium_-_Polished" class="visual" />
+						<geom pos="-0.017754 -0.01364 -0.05459" quat="0.5 0.5 -0.5 -0.5" mesh="Dual_Servo_Al_022__1__1_mesh_0" class="collision" />
+						<geom pos="-0.017754 -0.01364 -0.05459" quat="0.5 0.5 -0.5 -0.5" mesh="Dual_Servo_Al_022__1__1_mesh_1" class="collision" />
+						<geom pos="-0.017754 -0.01364 -0.05459" quat="0.5 0.5 -0.5 -0.5" mesh="Dual_Servo_Al_022__1__1_mesh_2" class="collision" />
+						<geom pos="-0.017754 -0.01364 -0.05459" quat="0.5 0.5 -0.5 -0.5" mesh="Dual_Servo_Al_022__1__1_mesh_3" class="collision" />
+						<geom pos="-0.017754 -0.01364 -0.05459" quat="0.5 0.5 -0.5 -0.5" mesh="Dual_Servo_Al_022__1__1_mesh_4" class="collision" />
+						<geom pos="-0.017754 -0.01364 -0.05459" quat="0.5 0.5 -0.5 -0.5" mesh="Dual_Servo_Al_022__1__1_mesh_5" class="collision" />
+					</body>
+					<joint name="right_hip_yaw_joint" type="hinge" pos="0.026146 -0.01364 -0.0339" range="-0.523599 0.523599" axis="0.0 -0.0 -1.0" />
+					<geom pos="0.026146 -0.00894 -0.0339" quat="-0.5 0.5 -0.5 0.5" material="Generic" mesh="U_Dual_Lever_Carbon_2_mesh" class="visual" />
+				</body>
+				
+				<joint name="waist_yaw_joint" type="hinge" pos="0.026146 0.02636 0.0039" range="-0.8 0.8" axis="0.0 -0.0 -1.0" />
+				<geom pos="0.014836 0.02636 -0.0189" quat="-0.0 -0.707107 0.707107 -0.0" mesh="Waist_1_mesh_0" material="Steel_-_Satin" class="visual" />
+				<geom pos="0.014836 0.02636 -0.0189" quat="-0.0 -0.707107 0.707107 -0.0" mesh="Waist_1_mesh_1" material="Aluminum_-_Anodized_Glossy_(Grey)" class="visual" />
+				<geom pos="0.014836 0.02636 -0.0189" quat="-0.0 -0.707107 0.707107 -0.0" mesh="Waist_1_mesh_2" material="Titanium_-_Polished" class="visual" />
+				<geom pos="0.014836 0.02636 -0.0189" quat="-0.0 -0.707107 0.707107 -0.0" mesh="Waist_1_mesh_3" material="Carbon_Fiber_-_Plain" class="visual" />
+				<geom pos="0.014836 0.02636 -0.0189" quat="-0.0 -0.707107 0.707107 -0.0" mesh="Waist_1_mesh_4" material="PA_12_-_Nylon_-_PA_603-CF_(with_EOS_P_3D_Printers)" class="visual" />
+				<geom pos="0.014836 0.02636 -0.0189" quat="-0.0 -0.707107 0.707107 -0.0" mesh="Waist_1_mesh_0" class="collision" />
+				<geom pos="0.014836 0.02636 -0.0189" quat="-0.0 -0.707107 0.707107 -0.0" mesh="Waist_1_mesh_1" class="collision" />
+				<geom pos="0.014836 0.02636 -0.0189" quat="-0.0 -0.707107 0.707107 -0.0" mesh="Waist_1_mesh_3" class="collision" />
+				<geom pos="0.014836 0.02636 -0.0189" quat="-0.0 -0.707107 0.707107 -0.0" mesh="Waist_1_mesh_4" class="collision" />
+			</body>
+			<body name="Robot_Football_Player_SKS_2501_Neck_Carbonv2_1">
+				<inertial fullinertia="2.76e-06 1.08e-06 2.54e-06 -0.0 1e-08 -0.0" pos="0.036894833515774 0.02638540866519999 0.08367294708045186" mass="0.006889915174480099" />
+				<body name="Robot_Football_Player_SKS_2501_Head_B0348_Head_Base_06v1_1">
+					<inertial fullinertia="0.00022883 0.00025318 0.00022145 -2.9e-07 3.283e-05 -3.06e-06" pos="0.021803711556924586 0.025609297609950777 0.13902850028891595" mass="0.26416283236894345" />
+					<joint name="head_pitch_joint" type="hinge" pos="0.037298 0.006385 0.10478" range="-1.919862 0.698132" axis="0.0 -1.0 0.0" />
+					<geom pos="0.058648 0.026285 0.064305" quat="0.5 -0.5 -0.5 0.5" mesh="Robot_Football_Player_SKS_2501_Head_B0348_Head_Base_06v1_1_mesh_0" material="Opaque(0,128,0)" class="visual" />
+					<geom pos="0.058648 0.026285 0.064305" quat="0.5 -0.5 -0.5 0.5" mesh="Robot_Football_Player_SKS_2501_Head_B0348_Head_Base_06v1_1_mesh_1" material="Rubber_-_Soft" class="visual" />
+					<geom pos="0.058648 0.026285 0.064305" quat="0.5 -0.5 -0.5 0.5" mesh="Robot_Football_Player_SKS_2501_Head_B0348_Head_Base_06v1_1_mesh_2" material="Opaque(0,0,255)" class="visual" />
+					<geom pos="0.058648 0.026285 0.064305" quat="0.5 -0.5 -0.5 0.5" mesh="Robot_Football_Player_SKS_2501_Head_B0348_Head_Base_06v1_1_mesh_3" material="Opaque(255,0,0)" class="visual" />
+					<geom pos="0.058648 0.026285 0.064305" quat="0.5 -0.5 -0.5 0.5" mesh="Robot_Football_Player_SKS_2501_Head_B0348_Head_Base_06v1_1_mesh_4" material="Silver_-_Polished" class="visual" />
+					<geom pos="0.058648 0.026285 0.064305" quat="0.5 -0.5 -0.5 0.5" mesh="Robot_Football_Player_SKS_2501_Head_B0348_Head_Base_06v1_1_mesh_5" material="Glass_(Clear)" class="visual" />
+					<geom pos="0.058648 0.026285 0.064305" quat="0.5 -0.5 -0.5 0.5" mesh="Robot_Football_Player_SKS_2501_Head_B0348_Head_Base_06v1_1_mesh_6" material="Glass_(Clear)" class="visual" />
+					<geom pos="0.058648 0.026285 0.064305" quat="0.5 -0.5 -0.5 0.5" mesh="Robot_Football_Player_SKS_2501_Head_B0348_Head_Base_06v1_1_mesh_7" material="Opaque(76,76,76)" class="visual" />
+					<geom pos="0.058648 0.026285 0.064305" quat="0.5 -0.5 -0.5 0.5" mesh="Robot_Football_Player_SKS_2501_Head_B0348_Head_Base_06v1_1_mesh_8" material="Steel_-_Satin" class="visual" />
+					<geom pos="0.058648 0.026285 0.064305" quat="0.5 -0.5 -0.5 0.5" mesh="Robot_Football_Player_SKS_2501_Head_B0348_Head_Base_06v1_1_mesh_9" material="Glass_(Clear)" class="visual" />
+					<geom pos="0.058648 0.026285 0.064305" quat="0.5 -0.5 -0.5 0.5" mesh="Robot_Football_Player_SKS_2501_Head_B0348_Head_Base_06v1_1_mesh_10" rgba="0.8 0.8 0.8 0.6" class="visual" />
+					<geom pos="0.058648 0.026285 0.064305" quat="0.5 -0.5 -0.5 0.5" mesh="Robot_Football_Player_SKS_2501_Head_B0348_Head_Base_06v1_1_mesh_11" material="PA_12_-_Nylon_-_PA_603-CF_(with_EOS_P_3D_Printers)" class="visual" />
+					<geom pos="0.058648 0.026285 0.064305" quat="0.5 -0.5 -0.5 0.5" mesh="Robot_Football_Player_SKS_2501_Head_B0348_Head_Base_06v1_1_mesh_0" class="collision" />
+					<geom pos="0.058648 0.026285 0.064305" quat="0.5 -0.5 -0.5 0.5" mesh="Robot_Football_Player_SKS_2501_Head_B0348_Head_Base_06v1_1_mesh_1" class="collision" />
+					<geom pos="0.058648 0.026285 0.064305" quat="0.5 -0.5 -0.5 0.5" mesh="Robot_Football_Player_SKS_2501_Head_B0348_Head_Base_06v1_1_mesh_2" class="collision" />
+					<geom pos="0.058648 0.026285 0.064305" quat="0.5 -0.5 -0.5 0.5" mesh="Robot_Football_Player_SKS_2501_Head_B0348_Head_Base_06v1_1_mesh_3" class="collision" />
+					<geom pos="0.058648 0.026285 0.064305" quat="0.5 -0.5 -0.5 0.5" mesh="Robot_Football_Player_SKS_2501_Head_B0348_Head_Base_06v1_1_mesh_4" class="collision" />
+					<geom pos="0.058648 0.026285 0.064305" quat="0.5 -0.5 -0.5 0.5" mesh="Robot_Football_Player_SKS_2501_Head_B0348_Head_Base_06v1_1_mesh_5" class="collision" />
+					<geom pos="0.058648 0.026285 0.064305" quat="0.5 -0.5 -0.5 0.5" mesh="Robot_Football_Player_SKS_2501_Head_B0348_Head_Base_06v1_1_mesh_6" class="collision" />
+					<geom pos="0.058648 0.026285 0.064305" quat="0.5 -0.5 -0.5 0.5" mesh="Robot_Football_Player_SKS_2501_Head_B0348_Head_Base_06v1_1_mesh_7" class="collision" />
+					<geom pos="0.058648 0.026285 0.064305" quat="0.5 -0.5 -0.5 0.5" mesh="Robot_Football_Player_SKS_2501_Head_B0348_Head_Base_06v1_1_mesh_8" class="collision" />
+					<geom pos="0.058648 0.026285 0.064305" quat="0.5 -0.5 -0.5 0.5" mesh="Robot_Football_Player_SKS_2501_Head_B0348_Head_Base_06v1_1_mesh_9" class="collision" />
+					<geom pos="0.058648 0.026285 0.064305" quat="0.5 -0.5 -0.5 0.5" mesh="Robot_Football_Player_SKS_2501_Head_B0348_Head_Base_06v1_1_mesh_10" class="collision" />
+					<geom pos="0.058648 0.026285 0.064305" quat="0.5 -0.5 -0.5 0.5" mesh="Robot_Football_Player_SKS_2501_Head_B0348_Head_Base_06v1_1_mesh_11" class="collision" />
+					<camera name="camera" pos="0.05 0.026 0.16" quat="0.5 0.5 -0.5 -0.5"/>
+				</body>
+				<joint name="head_yaw_joint" type="hinge" pos="0.037298 0.026385 0.07478" range="-0.785398 0.785398" axis="0.0 0.0 1.0" />
+				<geom pos="0.037298 0.026385 0.07478" quat="0.5 0.5 -0.5 -0.5" material="Carbon_Fiber_-_Plain" mesh="Robot_Football_Player_SKS_2501_Neck_Carbonv2_1_mesh" class="visual" />
+			</body>
+			<body name="U_Lever_Carbon_2__1">
+				<inertial fullinertia="8.3e-07 2.6e-06 2.73e-06 -0.0 0.0 -0.0" pos="0.03735575297497604 0.08997446561757946 0.049399999999975464" mass="0.007572394947205684" />
+				<body name="roki_Robot_Football_Player_SKS_2501_Servov12_10_v1_1">
+					<inertial fullinertia="7.851e-05 9.585e-05 3.561e-05 3.32e-06 -1.882e-05 1.096e-05" pos="0.029015114935958288 0.11208807505223022 0.016353427899268677" mass="0.13375324797693214" />
+					<body name="Elbow_Bracket_01_1__1">
+						<inertial fullinertia="1.169e-05 1.282e-05 1.635e-05 -1e-08 -6e-08 -5.3e-07" pos="0.03383538245602793 0.12265167955207325 -0.03755278502642227" mass="0.0578194518426968" />
+						<body name="Hand_Football_Player_05_1">
+							<inertial fullinertia="2.73e-06 8.8e-07 2.55e-06 0.0 -0.0 -3e-07" pos="0.04268075297495224 0.1272640588578238 -0.054745718268254244" mass="0.007572394947205686" />
+							<body name="arm_v1__1__1">
+								<inertial fullinertia="7.176e-05 8.18e-05 3.699e-05 -5.4e-07 1.71e-06 8.4e-06" pos="0.02972945682887385 0.13511597518234608 -0.09863326623868753" mass="0.14397953627462962" />
+								<body name="Carbon_Mov_Finger_021_v1_1">
+									<inertial fullinertia="4.4e-06 2.22e-06 3.98e-06 -1.2e-07 6.9e-07 -3.2e-07" pos="0.05973399011075332 0.14061970729544832 -0.13106524396143737" mass="0.010239430829455675" />
+									<joint name="left_gripper_joint" type="hinge" pos="0.042681 0.15691 -0.108275" range="-1.3 0.0" axis="-0.0 0.984808 0.173648" />
+									<geom pos="0.070043 0.140515 -0.130474" quat="-0.006171 0.70708 -0.697409 -0.116706" material="Carbon_Fiber_-_Plain" mesh="Carbon_Mov_Finger_021_v1_1_mesh" class="visual" />
+									<geom pos="0.06200043 0.140515 -0.143474" quat="-0.006171 0.70708 -0.697409 -0.116706" mesh="Carbon_Mov_Finger_021_v1_1_mesh_collision_0"  class="collision" />
+									<geom pos="0.0620043 0.140515 -0.143474" quat="-0.006171 0.70708 -0.697409 -0.116706" mesh="Carbon_Mov_Finger_021_v1_1_mesh_collision_1"  class="collision" />
+									<geom pos="0.0620043 0.140515 -0.143474" quat="-0.006171 0.70708 -0.697409 -0.116706" mesh="Carbon_Mov_Finger_021_v1_1_mesh_collision_2"  class="collision" />
+									<geom pos="0.0620043 0.140515 -0.143474" quat="-0.006171 0.70708 -0.697409 -0.116706" mesh="Carbon_Mov_Finger_021_v1_1_mesh_collision_3"  class="collision" />
+									<geom pos="0.0620043 0.140515 -0.143474" quat="-0.006171 0.70708 -0.697409 -0.116706" mesh="Carbon_Mov_Finger_021_v1_1_mesh_collision_4"  class="collision" />
+									<geom pos="0.0620043 0.140515 -0.143474" quat="-0.006171 0.70708 -0.697409 -0.116706" mesh="Carbon_Mov_Finger_021_v1_1_mesh_collision_5"  class="collision" />
+									<geom pos="0.0620043 0.140515 -0.143474" quat="-0.006171 0.70708 -0.697409 -0.116706" mesh="Carbon_Mov_Finger_021_v1_1_mesh_collision_6"  class="collision" />
+									<geom pos="0.0620043 0.140515 -0.143474" quat="-0.006171 0.70708 -0.697409 -0.116706" mesh="Carbon_Mov_Finger_021_v1_1_mesh_collision_7"  class="collision" />
+									<geom pos="0.0620043 0.140515 -0.143474" quat="-0.006171 0.70708 -0.697409 -0.116706" mesh="Carbon_Mov_Finger_021_v1_1_mesh_collision_8"  class="collision" />
+									<geom pos="0.0620043 0.140515 -0.143474" quat="-0.006171 0.70708 -0.697409 -0.116706" mesh="Carbon_Mov_Finger_021_v1_1_mesh_collision_9"  class="collision" />
+									<geom pos="0.0620043 0.140515 -0.143474" quat="-0.006171 0.70708 -0.697409 -0.116706" mesh="Carbon_Mov_Finger_021_v1_1_mesh_collision_10"  class="collision" />
+									<geom pos="0.0620043 0.140515 -0.143474" quat="-0.006171 0.70708 -0.697409 -0.116706" mesh="Carbon_Mov_Finger_021_v1_1_mesh_collision_11"  class="collision" />
+									<geom pos="0.0620043 0.140515 -0.143474" quat="-0.006171 0.70708 -0.697409 -0.116706" mesh="Carbon_Mov_Finger_021_v1_1_mesh_collision_12"  class="collision" />
+									<geom pos="0.0620043 0.140515 -0.143474" quat="-0.006171 0.70708 -0.697409 -0.116706" mesh="Carbon_Mov_Finger_021_v1_1_mesh_collision_13"  class="collision" />
+									<geom pos="0.0620043 0.140515 -0.143474" quat="-0.006171 0.70708 -0.697409 -0.116706" mesh="Carbon_Mov_Finger_021_v1_1_mesh_collision_14"  class="collision" />
+									<geom pos="0.0620043 0.140515 -0.143474" quat="-0.006171 0.70708 -0.697409 -0.116706" mesh="Carbon_Mov_Finger_021_v1_1_mesh_collision_15" class="collision" />
+									<geom pos="0.0620043 0.140515 -0.143474" quat="-0.006171 0.70708 -0.697409 -0.116706" mesh="Carbon_Mov_Finger_021_v1_1_mesh_collision_16"  class="collision" />
+									<geom pos="0.0620043 0.140515 -0.143474" quat="-0.006171 0.70708 -0.697409 -0.116706" mesh="Carbon_Mov_Finger_021_v1_1_mesh_collision_17" class="collision" />
+									<geom pos="0.0620043 0.140515 -0.143474" quat="-0.006171 0.70708 -0.697409 -0.116706" mesh="Carbon_Mov_Finger_021_v1_1_mesh_collision_18"  class="collision" />
+									<geom pos="0.0620043 0.140515 -0.143474" quat="-0.006171 0.70708 -0.697409 -0.116706" mesh="Carbon_Mov_Finger_021_v1_1_mesh_collision_19"  class="collision" />
+									<geom pos="0.0620043 0.140515 -0.143474" quat="-0.006171 0.70708 -0.697409 -0.116706" mesh="Carbon_Mov_Finger_021_v1_1_mesh_collision_20"  class="collision" />
+								</body>
+								<site name="left_eef_site" pos="0.042681 0.15691 -0.108275"/>
+
+								<joint name="left_arm_yaw_joint" type="hinge" pos="0.042681 0.128604 -0.062343" range="-1.57 1.57" axis="-0.0 0.173648 -0.984808" />
+								<geom pos="0.045356 0.141093 -0.133175" quat="0.704416 0.061628 0.704416 0.061628" mesh="arm_v1__1__1_mesh_0" material="Carbon_Fiber_-_Plain" class="visual" />
+								<geom pos="0.045356 0.141093 -0.133175" quat="0.704416 0.061628 0.704416 0.061628" mesh="arm_v1__1__1_mesh_1" material="PA_12_-_Nylon_-_PA_603-CF_(with_EOS_P_3D_Printers)" class="visual" />
+								<geom pos="0.045356 0.141093 -0.133175" quat="0.704416 0.061628 0.704416 0.061628" mesh="arm_v1__1__1_mesh_2" material="Stainless_Steel_-_Polished" class="visual" />
+								<geom pos="0.045356 0.141093 -0.133175" quat="0.704416 0.061628 0.704416 0.061628" mesh="arm_v1__1__1_mesh_3" material="Aluminum_-_Anodized_Glossy_(Grey)" class="visual" />
+								<geom pos="0.045356 0.141093 -0.133175" quat="0.704416 0.061628 0.704416 0.061628" mesh="arm_v1__1__1_mesh_4" material="Aluminum_-_Satin" class="visual" />
+								<geom pos="0.045356 0.141093 -0.137474" quat="0.704416 0.061628 0.704416 0.061628" mesh="arm_v1__1__1_mesh_0_collision_0" class="collision" />
+								<geom pos="0.045356 0.141093 -0.137474" quat="0.704416 0.061628 0.704416 0.061628" mesh="arm_v1__1__1_mesh_0_collision_1" class="collision" />
+								<geom pos="0.045356 0.141093 -0.137474" quat="0.704416 0.061628 0.704416 0.061628" mesh="arm_v1__1__1_mesh_0_collision_2" class="collision" />
+								<geom pos="0.045356 0.141093 -0.137474" quat="0.704416 0.061628 0.704416 0.061628" mesh="arm_v1__1__1_mesh_0_collision_3" class="collision" />
+								<geom pos="0.045356 0.141093 -0.137474" quat="0.704416 0.061628 0.704416 0.061628" mesh="arm_v1__1__1_mesh_0_collision_4" class="collision" />
+								<geom pos="0.045356 0.141093 -0.137474" quat="0.704416 0.061628 0.704416 0.061628" mesh="arm_v1__1__1_mesh_0_collision_5" class="collision" />
+								<geom pos="0.045356 0.141093 -0.137474" quat="0.704416 0.061628 0.704416 0.061628" mesh="arm_v1__1__1_mesh_0_collision_6" class="collision" />
+								<geom pos="0.045356 0.141093 -0.137474" quat="0.704416 0.061628 0.704416 0.061628" mesh="arm_v1__1__1_mesh_0_collision_7" class="collision" />
+								<geom pos="0.045356 0.141093 -0.137474" quat="0.704416 0.061628 0.704416 0.061628" mesh="arm_v1__1__1_mesh_0_collision_8" class="collision" />
+								<geom pos="0.045356 0.141093 -0.137474" quat="0.704416 0.061628 0.704416 0.061628" mesh="arm_v1__1__1_mesh_0_collision_9" class="collision" />
+								<geom pos="0.045356 0.141093 -0.137474" quat="0.704416 0.061628 0.704416 0.061628" mesh="arm_v1__1__1_mesh_0_collision_10" class="collision" />
+								<geom pos="0.045356 0.141093 -0.137474" quat="0.704416 0.061628 0.704416 0.061628" mesh="arm_v1__1__1_mesh_0_collision_11" class="collision" />
+								<geom pos="0.045356 0.141093 -0.137474" quat="0.704416 0.061628 0.704416 0.061628" mesh="arm_v1__1__1_mesh_0_collision_12" class="collision" />
+								<geom pos="0.045356 0.141093 -0.133175" quat="0.704416 0.061628 0.704416 0.061628" mesh="arm_v1__1__1_mesh_1" class="collision" />
+								<geom pos="0.045356 0.141093 -0.133175" quat="0.704416 0.061628 0.704416 0.061628" mesh="arm_v1__1__1_mesh_2" class="collision" />
+								<geom pos="0.045356 0.141093 -0.133175" quat="0.704416 0.061628 0.704416 0.061628" mesh="arm_v1__1__1_mesh_3" class="collision" />
+								<geom pos="0.045356 0.141093 -0.133175" quat="0.704416 0.061628 0.704416 0.061628" mesh="arm_v1__1__1_mesh_4" class="collision" />
+							</body>
+							<joint name="left_elbow_pitch_joint" type="hinge" pos="0.042681 0.10474 -0.04218" range="-1.919862 0.174533" axis="-0.0 0.984808 0.173648" />
+							<geom pos="0.042681 0.119227 -0.009163" quat="0.996195 0.087156 0.0 0.0" material="Generic" mesh="Hand_Football_Player_05_1_mesh" class="visual" />
+						</body>
+						<joint name="left_elbow_yaw_joint" type="hinge" pos="0.034781 0.11875 -0.021432" range="-3 3" axis="-0.0 0.173648 -0.984808" />
+						<geom pos="0.01196 0.203054 -0.073939" quat="0.454519 0.541675 0.454519 0.541675" mesh="Elbow_Bracket_01_1__1_mesh_0" material="Generic" class="visual" />
+						<geom pos="0.01196 0.203054 -0.073939" quat="0.454519 0.541675 0.454519 0.541675" mesh="Elbow_Bracket_01_1__1_mesh_1" material="PA_12_-_Nylon_-_PA_603-CF_(with_EOS_P_3D_Printers)" class="visual" />
+						<geom pos="0.01196 0.203054 -0.073939" quat="0.454519 0.541675 0.454519 0.541675" mesh="Elbow_Bracket_01_1__1_mesh_2" material="Steel_-_Satin" class="visual" />
+						<geom pos="0.01196 0.203054 -0.073939" quat="0.454519 0.541675 0.454519 0.541675" mesh="Elbow_Bracket_01_1__1_mesh_3" material="Aluminum_-_Anodized_Glossy_(Grey)" class="visual" />
+						<geom pos="0.01196 0.203054 -0.073939" quat="0.454519 0.541675 0.454519 0.541675" mesh="Elbow_Bracket_01_1__1_mesh_4" material="Titanium_-_Polished" class="visual" />
+						<!-- <geom pos="0.01196 0.203054 -0.073939" quat="0.454519 0.541675 0.454519 0.541675" mesh="Elbow_Bracket_01_1__1_mesh_0" class="collision" />
+						<geom pos="0.01196 0.203054 -0.073939" quat="0.454519 0.541675 0.454519 0.541675" mesh="Elbow_Bracket_01_1__1_mesh_1" class="collision" />
+						<geom pos="0.01196 0.203054 -0.073939" quat="0.454519 0.541675 0.454519 0.541675" mesh="Elbow_Bracket_01_1__1_mesh_2" class="collision" />
+						<geom pos="0.01196 0.203054 -0.073939" quat="0.454519 0.541675 0.454519 0.541675" mesh="Elbow_Bracket_01_1__1_mesh_3" class="collision" />
+						<geom pos="0.01196 0.203054 -0.073939" quat="0.454519 0.541675 0.454519 0.541675" mesh="Elbow_Bracket_01_1__1_mesh_4" class="collision" /> -->
+					</body>
+					<joint name="left_shoulder_roll_joint" type="hinge" pos="0.057356 0.10626 0.0494" range="0.0 2.96706" axis="1.0 -0.0 -0.0" />
+					<geom pos="0.037456 0.10626 0.0494" quat="0.707107 -0.0 0.707107 0.0" mesh="roki_Robot_Football_Player_SKS_2501_Servov12_10_v1_1_mesh_0" material="PA_12_-_Nylon_-_PA_603-CF_(with_EOS_P_3D_Printers)" class="visual" />
+					<geom pos="0.037456 0.10626 0.0494" quat="0.707107 -0.0 0.707107 0.0" mesh="roki_Robot_Football_Player_SKS_2501_Servov12_10_v1_1_mesh_1" material="Stainless_Steel_-_Polished" class="visual" />
+					<geom pos="0.037456 0.10626 0.0494" quat="0.707107 -0.0 0.707107 0.0" mesh="roki_Robot_Football_Player_SKS_2501_Servov12_10_v1_1_mesh_2" material="Aluminum_-_Anodized_Glossy_(Grey)" class="visual" />
+					<geom pos="0.037456 0.10626 0.0494" quat="0.707107 -0.0 0.707107 0.0" mesh="roki_Robot_Football_Player_SKS_2501_Servov12_10_v1_1_mesh_3" material="Aluminum_-_Satin" class="visual" />
+					<geom pos="0.037456 0.10626 0.0494" quat="0.707107 -0.0 0.707107 0.0" mesh="roki_Robot_Football_Player_SKS_2501_Servov12_10_v1_1_mesh_0" class="collision" />
+					<geom pos="0.037456 0.10626 0.0494" quat="0.707107 -0.0 0.707107 0.0" mesh="roki_Robot_Football_Player_SKS_2501_Servov12_10_v1_1_mesh_1" class="collision" />
+					<geom pos="0.037456 0.10626 0.0494" quat="0.707107 -0.0 0.707107 0.0" mesh="roki_Robot_Football_Player_SKS_2501_Servov12_10_v1_1_mesh_2" class="collision" />
+					<geom pos="0.037456 0.10626 0.0494" quat="0.707107 -0.0 0.707107 0.0" mesh="roki_Robot_Football_Player_SKS_2501_Servov12_10_v1_1_mesh_3" class="collision" />
+				</body>
+				<joint name="left_shoulder_pitch_joint" type="hinge" pos="0.037356 0.08226 0.0494" range="-3.141593 3.141593" axis="0.0 1.0 -0.0" />
+				<geom pos="0.037356 0.08226 0.0494" quat="0.707107 0.0 0.707107 0.0" material="Generic" mesh="U_Lever_Carbon_2__1_mesh" class="visual" />
+			</body>
+			<body name="U_Lever_Carbon_1__1">
+				<inertial fullinertia="8.3e-07 2.6e-06 2.73e-06 0.0 0.0 0.0" pos="0.03735575297497602 -0.03725396639564929 0.04939999999997575" mass="0.007572394947205684" />
+				<body name="roki_Robot_Football_Player_SKS_2501_Servov12_10__v1_1__1">
+					<inertial fullinertia="7.851e-05 9.585e-05 3.561e-05 -3.32e-06 -1.882e-05 -1.096e-05" pos="0.02901511493597373 -0.05936597915255187 0.01635314636220493" mass="0.1337532479769379" />
+					<body name="Elbow_Bracket_01_1">
+						<inertial fullinertia="1.169e-05 1.282e-05 1.635e-05 1e-08 -6e-08 5.3e-07" pos="0.03383538245602766 -0.06993118033014267 -0.037552785026421676" mass="0.05781945184269661" />
+						<body name="Hand_Football_Player_05__1__1">
+							<inertial fullinertia="2.73e-06 8.8e-07 2.55e-06 0.0 0.0 3e-07" pos="0.04268075297500186 -0.07454355963589375 -0.054745718268254834" mass="0.007572394947205652" />
+							<body name="arm_v1_1">
+								<inertial fullinertia="7.176e-05 8.195e-05 3.683e-05 8e-08 1.79e-06 -7.97e-06" pos="0.02972945682887983 -0.08217559725377638 -0.09867203678715318" mass="0.14397953627462962" />
+								<body name="Carbon_Mov_Finger_021_v1__1__1">
+									<inertial fullinertia="4.4e-06 2.22e-06 3.98e-06 1.2e-07 6.9e-07 3.2e-07" pos="0.05973399011076246 -0.08809617046938474 -0.13103051417686" mass="0.010239430829455675" />
+									<joint name="right_gripper_joint" type="hinge" pos="0.042681 -0.064994 -0.115186" range="-1.3 0.0" axis="-0.0 0.984808 -0.173648" />
+									<geom pos="0.070043 -0.087992 -0.130439" quat="-0.116706 -0.697409 0.70708 -0.006171" material="Carbon_Fiber_-_Plain" mesh="Carbon_Mov_Finger_021_v1__1__1_mesh" class="visual" />
+									<geom pos="0.06200043 -0.087992 -0.143474" quat="-0.116706 -0.697409 0.70708 -0.006171" mesh="Carbon_Mov_Finger_021_v1_1_mesh_collision_0"  class="collision" />
+									<geom pos="0.06200043 -0.087992 -0.143474" quat="-0.116706 -0.697409 0.70708 -0.006171" mesh="Carbon_Mov_Finger_021_v1_1_mesh_collision_1"  class="collision" />
+									<geom pos="0.0620043 -0.087992 -0.143474" quat="-0.116706 -0.697409 0.70708 -0.006171" mesh="Carbon_Mov_Finger_021_v1_1_mesh_collision_2"  class="collision" />
+									<geom pos="0.0620043 -0.087992 -0.143474" quat="-0.116706 -0.697409 0.70708 -0.006171" mesh="Carbon_Mov_Finger_021_v1_1_mesh_collision_3"  class="collision" />
+									<geom pos="0.0620043 -0.087992 -0.143474" quat="-0.116706 -0.697409 0.70708 -0.006171" mesh="Carbon_Mov_Finger_021_v1_1_mesh_collision_4"  class="collision" />
+									<geom pos="0.0620043 -0.087992 -0.143474" quat="-0.116706 -0.697409 0.70708 -0.006171" mesh="Carbon_Mov_Finger_021_v1_1_mesh_collision_5"  class="collision" />
+									<geom pos="0.0620043 -0.087992 -0.143474" quat="-0.116706 -0.697409 0.70708 -0.006171" mesh="Carbon_Mov_Finger_021_v1_1_mesh_collision_6"  class="collision" />
+									<geom pos="0.0620043 -0.087992 -0.143474" quat="-0.116706 -0.697409 0.70708 -0.006171" mesh="Carbon_Mov_Finger_021_v1_1_mesh_collision_7"  class="collision" />
+									<geom pos="0.0620043 -0.087992 -0.143474" quat="-0.116706 -0.697409 0.70708 -0.006171" mesh="Carbon_Mov_Finger_021_v1_1_mesh_collision_8"  class="collision" />
+									<geom pos="0.0620043 -0.087992 -0.143474" quat="-0.116706 -0.697409 0.70708 -0.006171" mesh="Carbon_Mov_Finger_021_v1_1_mesh_collision_9"  class="collision" />
+									<geom pos="0.0620043 -0.087992 -0.143474" quat="-0.116706 -0.697409 0.70708 -0.006171" mesh="Carbon_Mov_Finger_021_v1_1_mesh_collision_10"  class="collision" />
+									<geom pos="0.0620043 -0.087992 -0.143474" quat="-0.116706 -0.697409 0.70708 -0.006171" mesh="Carbon_Mov_Finger_021_v1_1_mesh_collision_11"  class="collision" />
+									<geom pos="0.0620043 -0.087992 -0.143474" quat="-0.116706 -0.697409 0.70708 -0.006171" mesh="Carbon_Mov_Finger_021_v1_1_mesh_collision_12"  class="collision" />
+									<geom pos="0.0620043 -0.087992 -0.143474" quat="-0.116706 -0.697409 0.70708 -0.006171" mesh="Carbon_Mov_Finger_021_v1_1_mesh_collision_13"  class="collision" />
+									<geom pos="0.0620043 -0.087992 -0.143474" quat="-0.116706 -0.697409 0.70708 -0.006171" mesh="Carbon_Mov_Finger_021_v1_1_mesh_collision_14"  class="collision" />
+									<geom pos="0.0620043 -0.087992 -0.143474" quat="-0.116706 -0.697409 0.70708 -0.006171" mesh="Carbon_Mov_Finger_021_v1_1_mesh_collision_15" class="collision" />
+									<geom pos="0.0620043 -0.087992 -0.143474" quat="-0.116706 -0.697409 0.70708 -0.006171" mesh="Carbon_Mov_Finger_021_v1_1_mesh_collision_16"  class="collision" />
+									<geom pos="0.0620043 -0.087992 -0.143474" quat="-0.116706 -0.697409 0.70708 -0.006171" mesh="Carbon_Mov_Finger_021_v1_1_mesh_collision_17" class="collision" />
+									<geom pos="0.0620043 -0.087992 -0.143474" quat="-0.116706 -0.697409 0.70708 -0.006171" mesh="Carbon_Mov_Finger_021_v1_1_mesh_collision_18"  class="collision" />
+									<geom pos="0.0620043 -0.087992 -0.143474" quat="-0.116706 -0.697409 0.70708 -0.006171" mesh="Carbon_Mov_Finger_021_v1_1_mesh_collision_19"  class="collision" />
+									<geom pos="0.0620043 -0.087992 -0.143474" quat="-0.116706 -0.697409 0.70708 -0.006171" mesh="Carbon_Mov_Finger_021_v1_1_mesh_collision_20"  class="collision" />
+								</body>
+								<site name="right_eef_site" pos="0.042681 -0.064994 -0.115186"/>
+								
+								<joint name="right_arm_yaw_joint" type="hinge" pos="0.042681 -0.075883 -0.062343" range="-3 3" axis="-0.0 -0.173648 -0.984808" />
+								<geom pos="0.045356 -0.088373 -0.133175" quat="0.704416 -0.061628 0.704416 -0.061628" mesh="arm_v1_1_mesh_0" material="Carbon_Fiber_-_Plain" class="visual" />
+								<geom pos="0.045356 -0.088373 -0.133175" quat="0.704416 -0.061628 0.704416 -0.061628" mesh="arm_v1_1_mesh_1" material="PA_12_-_Nylon_-_PA_603-CF_(with_EOS_P_3D_Printers)" class="visual" />
+								<geom pos="0.045356 -0.088373 -0.133175" quat="0.704416 -0.061628 0.704416 -0.061628" mesh="arm_v1_1_mesh_2" material="Stainless_Steel_-_Polished" class="visual" />
+								<geom pos="0.045356 -0.088373 -0.133175" quat="0.704416 -0.061628 0.704416 -0.061628" mesh="arm_v1_1_mesh_3" material="Aluminum_-_Anodized_Glossy_(Grey)" class="visual" />
+								<geom pos="0.045356 -0.088373 -0.133175" quat="0.704416 -0.061628 0.704416 -0.061628" mesh="arm_v1_1_mesh_4" material="Aluminum_-_Satin" class="visual" />
+								<geom pos="0.045356  -0.088373 -0.137474" quat="0.704416 -0.061628 0.704416 -0.061628" mesh="arm_v1__1__1_mesh_0_collision_0" class="collision" />
+								<geom pos="0.045356  -0.088373 -0.137474" quat="0.704416 -0.061628 0.704416 -0.061628" mesh="arm_v1__1__1_mesh_0_collision_1" class="collision" />
+								<geom pos="0.045356  -0.088373 -0.137474" quat="0.704416 -0.061628 0.704416 -0.061628" mesh="arm_v1__1__1_mesh_0_collision_2" class="collision" />
+								<geom pos="0.045356  -0.088373 -0.137474" quat="0.704416 -0.061628 0.704416 -0.061628" mesh="arm_v1__1__1_mesh_0_collision_3" class="collision" />
+								<geom pos="0.045356  -0.088373 -0.137474" quat="0.704416 -0.061628 0.704416 -0.061628" mesh="arm_v1__1__1_mesh_0_collision_4" class="collision" />
+								<geom pos="0.045356  -0.088373 -0.137474" quat="0.704416 -0.061628 0.704416 -0.061628" mesh="arm_v1__1__1_mesh_0_collision_5" class="collision" />
+								<geom pos="0.045356  -0.088373 -0.137474" quat="0.704416 -0.061628 0.704416 -0.061628" mesh="arm_v1__1__1_mesh_0_collision_6" class="collision" />
+								<geom pos="0.045356  -0.088373 -0.137474" quat="0.704416 -0.061628 0.704416 -0.061628" mesh="arm_v1__1__1_mesh_0_collision_7" class="collision" />
+								<geom pos="0.045356  -0.088373 -0.137474" quat="0.704416 -0.061628 0.704416 -0.061628" mesh="arm_v1__1__1_mesh_0_collision_8" class="collision" />
+								<geom pos="0.045356  -0.088373 -0.137474" quat="0.704416 -0.061628 0.704416 -0.061628" mesh="arm_v1__1__1_mesh_0_collision_9" class="collision" />
+								<geom pos="0.045356  -0.088373 -0.137474" quat="0.704416 -0.061628 0.704416 -0.061628" mesh="arm_v1__1__1_mesh_0_collision_10" class="collision" />
+								<geom pos="0.045356  -0.088373 -0.137474" quat="0.704416 -0.061628 0.704416 -0.061628" mesh="arm_v1__1__1_mesh_0_collision_11" class="collision" />
+								<geom pos="0.045356  -0.088373 -0.137474" quat="0.704416 -0.061628 0.704416 -0.061628" mesh="arm_v1__1__1_mesh_0_collision_12" class="collision" />
+								<geom pos="0.045356  -0.088373 -0.137474" quat="0.704416 -0.061628 0.704416 -0.061628" mesh="arm_v1_1_mesh_1" class="collision" />
+								<geom pos="0.045356 -0.088373 -0.133175" quat="0.704416 -0.061628 0.704416 -0.061628" mesh="arm_v1_1_mesh_2" class="collision" />
+								<geom pos="0.045356 -0.088373 -0.133175" quat="0.704416 -0.061628 0.704416 -0.061628" mesh="arm_v1_1_mesh_3" class="collision" />
+								<geom pos="0.045356 -0.088373 -0.133175" quat="0.704416 -0.061628 0.704416 -0.061628" mesh="arm_v1_1_mesh_4" class="collision" />
+							</body>
+							<joint name="right_elbow_pitch_joint" type="hinge" pos="0.042681 -0.052019 -0.04218" range="-1.919862 0.174533" axis="-0.0 0.984808 -0.173648" />
+							<geom pos="0.042681 -0.066506 -0.009163" quat="-0.0 0.0 0.087156 0.996195" material="Generic" mesh="Hand_Football_Player_05__1__1_mesh" class="visual" />
+						</body>
+						<joint name="right_elbow_yaw_joint" type="hinge" pos="0.034781 -0.066029 -0.021432" range="-3 3" axis="-0.0 -0.173648 -0.984808" />
+						<geom pos="0.052678 -0.151189 -0.073788" quat="0.541675 0.454519 -0.541675 -0.454519" mesh="Elbow_Bracket_01_1_mesh_0" material="Generic" class="visual" />
+						<geom pos="0.052678 -0.151189 -0.073788" quat="0.541675 0.454519 -0.541675 -0.454519" mesh="Elbow_Bracket_01_1_mesh_1" material="PA_12_-_Nylon_-_PA_603-CF_(with_EOS_P_3D_Printers)" class="visual" />
+						<geom pos="0.052678 -0.151189 -0.073788" quat="0.541675 0.454519 -0.541675 -0.454519" mesh="Elbow_Bracket_01_1_mesh_2" material="Steel_-_Satin" class="visual" />
+						<geom pos="0.052678 -0.151189 -0.073788" quat="0.541675 0.454519 -0.541675 -0.454519" mesh="Elbow_Bracket_01_1_mesh_3" material="Aluminum_-_Anodized_Glossy_(Grey)" class="visual" />
+						<!-- <geom pos="0.052678 -0.151189 -0.073788" quat="0.541675 0.454519 -0.541675 -0.454519" mesh="Elbow_Bracket_01_1_mesh_4" material="Titanium_-_Polished" class="visual" />
+						<geom pos="0.052678 -0.151189 -0.073788" quat="0.541675 0.454519 -0.541675 -0.454519" mesh="Elbow_Bracket_01_1_mesh_0" class="collision" />
+						<geom pos="0.052678 -0.151189 -0.073788" quat="0.541675 0.454519 -0.541675 -0.454519" mesh="Elbow_Bracket_01_1_mesh_1" class="collision" />
+						<geom pos="0.052678 -0.151189 -0.073788" quat="0.541675 0.454519 -0.541675 -0.454519" mesh="Elbow_Bracket_01_1_mesh_2" class="collision" />
+						<geom pos="0.052678 -0.151189 -0.073788" quat="0.541675 0.454519 -0.541675 -0.454519" mesh="Elbow_Bracket_01_1_mesh_3" class="collision" />
+						<geom pos="0.052678 -0.151189 -0.073788" quat="0.541675 0.454519 -0.541675 -0.454519" mesh="Elbow_Bracket_01_1_mesh_4" class="collision" /> -->
+					</body>
+					<joint name="right_shoulder_roll_joint" type="hinge" pos="0.057356 -0.05354 0.0494" range="-2.96706 0.0" axis="1.0 -0.0 -0.0" />
+					<geom pos="0.037456 -0.05354 0.0494" quat="0.707107 -0.0 0.707107 -0.0" mesh="roki_Robot_Football_Player_SKS_2501_Servov12_10__v1_1__1_mesh_0" material="PA_12_-_Nylon_-_PA_603-CF_(with_EOS_P_3D_Printers)" class="visual" />
+					<geom pos="0.037456 -0.05354 0.0494" quat="0.707107 -0.0 0.707107 -0.0" mesh="roki_Robot_Football_Player_SKS_2501_Servov12_10__v1_1__1_mesh_1" material="Stainless_Steel_-_Polished" class="visual" />
+					<geom pos="0.037456 -0.05354 0.0494" quat="0.707107 -0.0 0.707107 -0.0" mesh="roki_Robot_Football_Player_SKS_2501_Servov12_10__v1_1__1_mesh_2" material="Aluminum_-_Anodized_Glossy_(Grey)" class="visual" />
+					<geom pos="0.037456 -0.05354 0.0494" quat="0.707107 -0.0 0.707107 -0.0" mesh="roki_Robot_Football_Player_SKS_2501_Servov12_10__v1_1__1_mesh_3" material="Aluminum_-_Satin" class="visual" />
+					<geom pos="0.037456 -0.05354 0.0494" quat="0.707107 -0.0 0.707107 -0.0" mesh="roki_Robot_Football_Player_SKS_2501_Servov12_10__v1_1__1_mesh_0" class="collision" />
+					<geom pos="0.037456 -0.05354 0.0494" quat="0.707107 -0.0 0.707107 -0.0" mesh="roki_Robot_Football_Player_SKS_2501_Servov12_10__v1_1__1_mesh_1" class="collision" />
+					<geom pos="0.037456 -0.05354 0.0494" quat="0.707107 -0.0 0.707107 -0.0" mesh="roki_Robot_Football_Player_SKS_2501_Servov12_10__v1_1__1_mesh_2" class="collision" />
+					<geom pos="0.037456 -0.05354 0.0494" quat="0.707107 -0.0 0.707107 -0.0" mesh="roki_Robot_Football_Player_SKS_2501_Servov12_10__v1_1__1_mesh_3" class="collision" />
+				</body>
+				<joint name="right_shoulder_pitch_joint" type="hinge" pos="0.037356 -0.02954 0.0494" range="-3.141593 3.141593" axis="0.0 1.0 0.0" />
+				<geom pos="0.037356 -0.02954 0.0494" quat="-0.0 -0.707107 0.0 0.707107" material="Generic" mesh="U_Lever_Carbon_1__1_mesh" class="visual" />
+			</body>
+			<geom pos="0.026286 0.02636 0.05495" quat="-0.0 -0.707107 0.707107 0.0" mesh="base_link_1_mesh_0" material="Rubber_-_Soft" class="visual" />
+			<geom pos="0.026286 0.02636 0.05495" quat="-0.0 -0.707107 0.707107 0.0" mesh="base_link_1_mesh_1" material="Opaque(0,128,0)" class="visual" />
+			<geom pos="0.026286 0.02636 0.05495" quat="-0.0 -0.707107 0.707107 0.0" mesh="base_link_1_mesh_2" material="Opaque(0,0,255)" class="visual" />
+			<geom pos="0.026286 0.02636 0.05495" quat="-0.0 -0.707107 0.707107 0.0" mesh="base_link_1_mesh_3" material="ABS_(White)" class="visual" />
+			<geom pos="0.026286 0.02636 0.05495" quat="-0.0 -0.707107 0.707107 0.0" mesh="base_link_1_mesh_4" material="Generic" class="visual" />
+			<geom pos="0.026286 0.02636 0.05495" quat="-0.0 -0.707107 0.707107 0.0" mesh="base_link_1_mesh_5" material="Silver_-_Polished" class="visual" />
+			<geom pos="0.026286 0.02636 0.05495" quat="-0.0 -0.707107 0.707107 0.0" mesh="base_link_1_mesh_6" material="Plastic_-_Translucent_Glossy_(Red)" class="visual" />
+			<geom pos="0.026286 0.02636 0.05495" quat="-0.0 -0.707107 0.707107 0.0" mesh="base_link_1_mesh_7" material="Steel_-_Satin" class="visual" />
+			<geom pos="0.026286 0.02636 0.05495" quat="-0.0 -0.707107 0.707107 0.0" mesh="base_link_1_mesh_8" material="Titanium_-_Polished" class="visual" />
+			<geom pos="0.026286 0.02636 0.05495" quat="-0.0 -0.707107 0.707107 0.0" mesh="base_link_1_mesh_9" material="Aluminum_-_Anodized_Glossy_(Grey)" class="visual" />
+			<geom pos="0.026286 0.02636 0.05495" quat="-0.0 -0.707107 0.707107 0.0" mesh="base_link_1_mesh_10" material="Opaque(255,0,0)" class="visual" />
+			<geom pos="0.026286 0.02636 0.05495" quat="-0.0 -0.707107 0.707107 0.0" mesh="base_link_1_mesh_11" material="PA_12_-_Nylon_-_PA_603-CF_(with_EOS_P_3D_Printers)" class="visual" />
+			<!-- <geom pos="0.026286 0.02636 0.05495" quat="-0.0 -0.707107 0.707107 0.0" mesh="base_link_1_mesh_0" class="collision" />
+			<geom pos="0.026286 0.02636 0.05495" quat="-0.0 -0.707107 0.707107 0.0" mesh="base_link_1_mesh_1" class="collision" />
+			<geom pos="0.026286 0.02636 0.05495" quat="-0.0 -0.707107 0.707107 0.0" mesh="base_link_1_mesh_2" class="collision" />
+			<geom pos="0.026286 0.02636 0.05495" quat="-0.0 -0.707107 0.707107 0.0" mesh="base_link_1_mesh_3" class="collision" />
+			<geom pos="0.026286 0.02636 0.05495" quat="-0.0 -0.707107 0.707107 0.0" mesh="base_link_1_mesh_4" class="collision" />
+			<geom pos="0.026286 0.02636 0.05495" quat="-0.0 -0.707107 0.707107 0.0" mesh="base_link_1_mesh_5" class="collision" />
+			<geom pos="0.026286 0.02636 0.05495" quat="-0.0 -0.707107 0.707107 0.0" mesh="base_link_1_mesh_6" class="collision" />
+			<geom pos="0.026286 0.02636 0.05495" quat="-0.0 -0.707107 0.707107 0.0" mesh="base_link_1_mesh_7" class="collision" />
+			<geom pos="0.026286 0.02636 0.05495" quat="-0.0 -0.707107 0.707107 0.0" mesh="base_link_1_mesh_8" class="collision" />
+			<geom pos="0.026286 0.02636 0.05495" quat="-0.0 -0.707107 0.707107 0.0" mesh="base_link_1_mesh_9" class="collision" />
+			<geom pos="0.026286 0.02636 0.05495" quat="-0.0 -0.707107 0.707107 0.0" mesh="base_link_1_mesh_10" class="collision" />
+			<geom pos="0.026286 0.02636 0.05495" quat="-0.0 -0.707107 0.707107 0.0" mesh="base_link_1_mesh_11" class="collision" /> -->
+		</body>
+	</worldbody>
+	
+	<equality />
+	<actuator>
+		<position name="left_ankle_roll" joint="left_ankle_roll_joint" forcerange="-3.5 3.5"  kp="10"  ctrlrange="-0.523599 0.523599" />
+		<position name="left_ankle_pitch" joint="left_ankle_pitch_joint" forcerange="-3.5 3.5"  kp="10"  ctrlrange="-0.698132 0.872665" />
+		<position name="left_bottom_knee" joint="left_bottom_knee_joint" forcerange="-3.5 3.5"  kp="10"  ctrlrange="-0.087266 2.094395" />
+		<position name="left_upper_knee" joint="left_upper_knee_joint" forcerange="-3.5 3.5"  kp="10"  ctrlrange="-0.087266 2.094395" />
+		<position name="left_hip_pitch" joint="left_hip_pitch_joint" forcerange="-3.5 3.5"  kp="10"  ctrlrange="-1.745329 2.094395" />
+		<position name="left_hip_roll" joint="left_hip_roll_joint" forcerange="-3.5 3.5"  kp="10"  ctrlrange="-0.523599 0.523599" />
+		<position name="left_hip_yaw" joint="left_hip_yaw_joint" forcerange="-3.5 3.5"  kp="10"  ctrlrange="-0.523599 0.523599" />
+		<position name="right_ankle_roll" joint="right_ankle_roll_joint" forcerange="-3.5 3.5"  kp="10"  ctrlrange="-0.523599 0.523599" />
+		<position name="right_ankle_pitch" joint="right_ankle_pitch_joint" forcerange="-3.5 3.5"  kp="10"  ctrlrange="-0.785398 1.22173" />
+		<position name="right_bottom_knee" joint="right_bottom_knee_joint" forcerange="-3.5 3.5"  kp="10"  ctrlrange="-0.087266 2.094395" />
+		<position name="right_upper_knee" joint="right_upper_knee_joint" forcerange="-3.5 3.5"  kp="10"  ctrlrange="-0.087266 2.094395" />
+		<position name="right_hip_pitch" joint="right_hip_pitch_joint" forcerange="-3.5 3.5"  kp="10"  ctrlrange="-1.745329 2.094395" />
+		<position name="right_hip_roll" joint="right_hip_roll_joint" forcerange="-3.5 3.5"  kp="10"  ctrlrange="-0.523599 0.523599" />
+		<position name="right_hip_yaw" joint="right_hip_yaw_joint" forcerange="-3.5 3.5"  kp="10"  ctrlrange="-0.523599 0.523599" />
+		<position name="waist_yaw" joint="waist_yaw_joint" forcerange="-3.5 3.5"  kp="10"  ctrlrange="-0.8 0.8" />
+		<position name="head_pitch" joint="head_pitch_joint" forcerange="-3.5 3.5"  kp="10"  ctrlrange="-1.919862 0.698132" />
+		<position name="head_yaw" joint="head_yaw_joint" forcerange="-3.5 3.5"  kp="10"  ctrlrange="-0.785398 0.785398" />
+		<position name="left_gripper" joint="left_gripper_joint" forcerange="-3.5 3.5"  kp="10"  ctrlrange="-1.3 0.0" />
+		<position name="left_arm_yaw" joint="left_arm_yaw_joint" forcerange="-3.5 3.5"  kp="10"  ctrlrange="-3 3" />
+		<position name="left_elbow_pitch" joint="left_elbow_pitch_joint" forcerange="-3.5 3.5"  kp="10"  ctrlrange="-1.919862 0.174533" />
+		<position name="left_elbow_yaw" joint="left_elbow_yaw_joint" forcerange="-3.5 3.5"  kp="10"  ctrlrange="-3 3" />
+		<position name="left_shoulder_roll" joint="left_shoulder_roll_joint" forcerange="-3.5 3.5"  kp="10"  ctrlrange="0.0 2.96706" />
+		<position name="left_shoulder_pitch" joint="left_shoulder_pitch_joint" forcerange="-3.5 3.5"  kp="10"  ctrlrange="-3.141593 3.141593" />
+		<position name="right_gripper" joint="right_gripper_joint" forcerange="-3.5 3.5"  kp="10"  ctrlrange="-1.3 0.0" />
+		<position name="right_arm_yaw" joint="right_arm_yaw_joint" forcerange="-3.5 3.5"  kp="10"  ctrlrange="-3 3" />
+		<position name="right_elbow_pitch" joint="right_elbow_pitch_joint" forcerange="-3.5 3.5"  kp="10"  ctrlrange="-1.919862 0.174533" />
+		<position name="right_elbow_yaw" joint="right_elbow_yaw_joint" forcerange="-3.5 3.5"  kp="10"  ctrlrange="-3 3" />
+		<position name="right_shoulder_roll" joint="right_shoulder_roll_joint" forcerange="-3.5 3.5"  kp="10"  ctrlrange="-2.96706 0.0" />
+		<position name="right_shoulder_pitch" joint="right_shoulder_pitch_joint" forcerange="-3.5 3.5"  kp="10"  ctrlrange="-3.141593 3.141593" />
+	</actuator>
+	<sensor>
+    		<jointpos name="left_ankle_roll_pos" joint="left_ankle_roll_joint"  />
+    		<jointpos name="left_ankle_pitch_pos" joint="left_ankle_pitch_joint"  />
+    		<jointpos name="left_bottom_knee_pos" joint="left_bottom_knee_joint"  />
+    		<jointpos name="left_upper_knee_pos" joint="left_upper_knee_joint"  />
+    		<jointpos name="left_hip_pitch_pos" joint="left_hip_pitch_joint"  />
+    		<jointpos name="left_hip_roll_pos" joint="left_hip_roll_joint"  />
+    		<jointpos name="left_hip_yaw_pos" joint="left_hip_yaw_joint"  />
+    		<jointpos name="right_ankle_roll_pos" joint="right_ankle_roll_joint"  />
+    		<jointpos name="right_ankle_pitch_pos" joint="right_ankle_pitch_joint"  />
+    		<jointpos name="right_bottom_knee_pos" joint="right_bottom_knee_joint"  />
+    		<jointpos name="right_upper_knee_pos" joint="right_upper_knee_joint"  />
+    		<jointpos name="right_hip_pitch_pos" joint="right_hip_pitch_joint"  />
+    		<jointpos name="right_hip_roll_pos" joint="right_hip_roll_joint"  />
+    		<jointpos name="right_hip_yaw_pos" joint="right_hip_yaw_joint"  />
+    		<jointpos name="waist_yaw_pos" joint="waist_yaw_joint"  />
+    		<jointpos name="head_pitch_pos" joint="head_pitch_joint"  />
+    		<jointpos name="head_yaw_pos" joint="head_yaw_joint"  />
+    		<jointpos name="left_elbow_pitch_pos" joint="left_elbow_pitch_joint"  />
+    		<jointpos name="left_elbow_yaw_pos" joint="left_elbow_yaw_joint"  />
+    		<jointpos name="left_shoulder_roll_pos" joint="left_shoulder_roll_joint"  />
+    		<jointpos name="left_shoulder_pitch_pos" joint="left_shoulder_pitch_joint"  />
+    		<jointpos name="right_elbow_pitch_pos" joint="right_elbow_pitch_joint"  />
+    		<jointpos name="right_elbow_yaw_pos" joint="right_elbow_yaw_joint"  />
+    		<jointpos name="right_shoulder_roll_pos" joint="right_shoulder_roll_joint"  />
+    		<jointpos name="right_shoulder_pitch_pos" joint="right_shoulder_pitch_joint"  />
+  	</sensor>
+
+
+</mujoco>
