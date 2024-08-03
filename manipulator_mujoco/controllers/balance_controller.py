@@ -60,7 +60,7 @@ class BalanceController:
         self.params.swingVel = 4.0
         self.params.trunkXOffset = 0.01
         self.params.trunkYOffset = 0.0
-        self.params.trunkZOffset = 0.01
+        self.params.trunkZOffset = 0.02
         self.params.trunkPitch = 0.19
         self.params.trunkRoll = 0.0
         # self.params.trunkPitchBackward = -0.02
@@ -104,7 +104,7 @@ class BalanceController:
         self.target = target
 
         self.walkFlag=True
-        self.xPos=0.02242143
+        self.xPos=0.019746263151372886
 
         # MuJoCo enum value for joints
         mjOBJ_JOINT = 3
@@ -149,33 +149,34 @@ class BalanceController:
         
         # Compute the center of mass (CoM) position and velocity
         com_pos = self._physics.data.subtree_com[0]
-        com_pos[0] = com_pos[0]-self.xPos# Assuming 0 is the root body index
-        com_pos[1] = com_pos[1]-0.02601938
+        com_pos[0] = com_pos[0] - self.xPos# Assuming 0 is the root body index
+        com_pos[1] = com_pos[1] - 0.029123672185854297
         com_pos[2] = np.clip(-com_pos[2]+target[2], -0.3, 0.3)
-        # print(com_pos[2])
+        # print(com_pos)
         com_vel = self._physics.data.cvel[0][:3]  # Linear velocity of the CoM
         # Compute desired hip, knee, and ankle torques using PD control
         x_torque = - self._kp_hip * com_pos[0]   # PD control for hip
         y_torque = -self._kp_knee * com_pos[1] + self._kd_knee * com_vel[1]  # PD control for knee
         z_torque = -self._kp_ankle * com_pos[2] + self._kd_ankle * com_vel[2]  # PD control for ankle
-        if target[0] - com_pos[0] >0.17:
-                if self.walkFlag:
-                    self.xPos=com_pos[0]
-                    self.params.trunkPitch = 0.22
-                    self.params.trunkXOffset = 0.01
-                    self.params.trunkYOffset = 0.0
-                    self.params.trunkZOffset = 0.01
-                    self.params.enabledGain=1.0
-                    self.params.stepGain = 0.02
-                    self.params.turnGain = -0.0
+        if target[0] - com_pos[0] >0.23:
+            pass
+                # if self.walkFlag:
+                #     # self.xPos=com_pos[0]
+                #     self.params.trunkPitch = 0.22
+                #     self.params.trunkXOffset = 0.01
+                #     self.params.trunkYOffset = 0.0
+                #     self.params.trunkZOffset = 0.01
+                #     self.params.enabledGain=1.0
+                #     self.params.stepGain = 0.02
+                #     self.params.turnGain = -0.0
                     
 
-                if target[0] - com_pos[0] < 0.23:
-                    self.walkFlag=False
-                    self.params.stepGain = 0.0
-                    self.params.enabledGain=0.0
-                elif target[0] - com_pos[0] >0.25:
-                    self.walkFlag=True
+                # if target[0] - com_pos[0] < 0.14:
+                #     self.walkFlag=False
+                #     self.params.stepGain = 0.0
+                #     self.params.enabledGain=0.0
+                # elif target[0] - com_pos[0] >0.18:
+                #     self.walkFlag=True
 
 
        
@@ -191,9 +192,9 @@ class BalanceController:
 
             # self.update_value("trunkXOffset",np.clip(self.params.trunkXOffset + x_torque,-0.0,0.03))
             self.update_value("trunkYOffset",np.clip(self.params.trunkYOffset + y_torque,-0.03,0.03))
-            self.update_value("trunkZOffset",np.clip(self.params.trunkZOffset + z_torque,0.01,0.05))
-            self.update_value("trunkPitch",np.clip(self.params.trunkPitch + 0.5*x_torque,0,0.4))
-            self.update_value("trunkXOffset",np.clip(self.params.trunkXOffset + 0.5*x_torque,-0.03,0.03))
+            # self.update_value("trunkZOffset",np.clip(self.params.trunkZOffset + z_torque,0.01,0.04))
+            # self.update_value("trunkPitch",np.clip(self.params.trunkPitch + x_torque,-0.7,0.7))
+            self.update_value("trunkXOffset",np.clip(self.params.trunkXOffset + x_torque,-0.04,0.04))
        
         
 
@@ -231,7 +232,7 @@ class BalanceController:
         ankle_torque_z = self._kpz_ankle * com_pos[2] + self._kdz_ankle * com_vel[2]  # PD control for ankle
 
         hip_torque_roll = self._kp_hip * com_pos[1] + self._kd_hip * com_vel[1]  # PD control for hip
-        ankle_torque = 10*self._kp_ankle * com_pos[0] + self._kd_ankle * com_vel[0]  # PD control for ankle
+        ankle_torque = 200*self._kp_ankle * com_pos[0] + self._kd_ankle * com_vel[0]  # PD control for ankle
 
       
         # Apply torques to hip joints
@@ -244,9 +245,9 @@ class BalanceController:
         #     self._physics.data.qfrc_applied[knee_id] += knee_torque
         #     # self._physics.data.qfrc_applied[knee_id] += knee_torque_z
 
-        # # Apply torques to ankle joints
-        for ankle_id in self._ankle_dof_ids:
-            self._physics.data.qfrc_applied[ankle_id] = ankle_torque
+        # # # Apply torques to ankle joints
+        # for ankle_id in self._ankle_dof_ids:
+        #     self._physics.data.qfrc_applied[ankle_id] = ankle_torque
         return self.walkFlag
 
             # self._physics.data.qfrc_applied[ankle_id] += ankle_torque_z

@@ -1,19 +1,11 @@
 from manipulator_mujoco.controllers import JointEffortController
+import roboticstoolbox as rtb
+from spatialmath import SE3
 import numpy as np
-from manipulator_mujoco.utils.controller_utils import (
-    task_space_inertia_matrix,
-    pose_error,
-)
-from manipulator_mujoco.utils.mujoco_utils import (
-    get_site_jac, 
-    get_fullM
-)
-from manipulator_mujoco.utils.transform_utils import (
-    mat2quat,
-)
 
 class OperationalSpaceController(JointEffortController):
     def __init__(
+
         self,
         physics,
         joints,
@@ -27,6 +19,15 @@ class OperationalSpaceController(JointEffortController):
         vmax_abg: float,
         # walk: bool,
     ) -> None:
+        L1 = rtb.RevoluteDH(d=0.0795, a=0., alpha=np.pi/2, qlim=[0,np.pi] ) #shoulder roll
+        L2 = rtb.RevoluteDH(d=0.003,  alpha=np.pi/2, offset=np.pi/2+ 0.17453, qlim=[-np.pi,np.pi]) #elbow pitch
+        L3 = rtb.RevoluteDH(d=0.08994, a=-0.005,alpha=np.pi/2, offset=0, qlim=[0,np.pi/2]) #elbow yaw
+        L4 = rtb.RevoluteDH( alpha=np.pi/2, offset=np.pi/2, qlim=[-np.pi,np.pi])
+        L5 = rtb.RevoluteDH( d=0.11, alpha=0, qlim=[-np.pi,np.pi])
+        L6 = rtb.RevoluteDH( d=0, alpha=np.pi/2)
+        self.robot = rtb.DHRobot([L1,L2,L3,L4,L5], name='3-DOF Robot')
+        self.zeros = [0,0,np.pi/2,np.pi/2,0]
+        
         
         super().__init__(physics, joints, min_effort, max_effort)
 
@@ -37,12 +38,19 @@ class OperationalSpaceController(JointEffortController):
         self._vmax_xyz = vmax_xyz
         self._vmax_abg = vmax_abg
 
+        self.walk=False
+
+        self._joints = joints
+
         self._eef_id = self._physics.bind(eef_site).element_id
         self._jnt_dof_ids = self._physics.bind(joints).dofadr
+        self.pos = [1.57,1.57, 0, 0, 0]
         self._dof = len(self._jnt_dof_ids)
+        self.jntList={}
+        self.id=0
 
         # Extract joint limits from the model
-        self._pos_limit, self._vel_limit = self._get_joint_limits()
+        # self._pos_limit, self._vel_limit = self._get_joint_limits()
 
         self._task_space_gains = np.array([self._kp] * 3 + [self._ko] * 3)
         self._lamb = self._task_space_gains / self._kv
@@ -51,141 +59,120 @@ class OperationalSpaceController(JointEffortController):
         self._scale_xyz = vmax_xyz / self._kp * self._kv
         self._scale_abg = vmax_abg / self._ko * self._kv
 
-    def _get_joint_limits(self):
-        # Extract joint limits from the MuJoCo model
-        pos_limit = np.zeros((2, self._dof))
-        vel_limit = np.zeros((2, self._dof))
+    def quaternion_to_rotation_matrix(self, qx, qy, qz, qw):
+        """Converts a quaternion into a rotation matrix."""
+        # Normalize the quaternion
+        norm = np.sqrt(qx**2 + qy**2 + qz**2 + qw**2)
+        qx, qy, qz, qw = qx / norm, qy / norm, qz / norm, qw / norm
 
-        for i, jnt_dof_id in enumerate(self._jnt_dof_ids):
-            print(self._jnt_dof_ids)
-            if jnt_dof_id < self._physics.model.njnt:
-                joint_id = self._physics.model.jnt_qposadr[jnt_dof_id]
-                if joint_id < len(self._physics.model.jnt_range):
-                    pos_limit[:, i] = self._physics.model.jnt_range[joint_id]
-                else:
-                    pos_limit[:, i] = [-np.inf, np.inf]  # Default limit if not found
+        # Compute the rotation matrix elements
+        R = np.array([
+            [1 - 2 * (qy**2 + qz**2), 2 * (qx*qy - qz*qw), 2 * (qx*qz + qy*qw)],
+            [2 * (qx*qy + qz*qw), 1 - 2 * (qx**2 + qz**2), 2 * (qy*qz - qx*qw)],
+            [2 * (qx*qz - qy*qw), 2 * (qy*qz + qx*qw), 1 - 2 * (qx**2 + qy**2)]
+        ])
+        
+        return R
 
-                if joint_id < len(self._physics.model.dof_damping):
-                    vel_limit[:, i] = [-self._physics.model.dof_damping[jnt_dof_id], self._physics.model.dof_damping[jnt_dof_id]]
-                else:
-                    vel_limit[:, i] = [-np.inf, np.inf]  # Default limit if not found
+    def create_transformation_matrix(self, x, y, z, qx, qy, qz, qw):
+        """Creates a 4x4 transformation matrix from position and quaternion."""
+        # Get the rotation matrix from the quaternion
+        R = self.quaternion_to_rotation_matrix(qx, qy, qz, qw)
+        
+        # Create the transformation matrix
+        T = np.eye(4)
+        T[:3, :3] = R
+        T[:3, 3] = [-z, -x, y]
+        # print(SE3(T))
+        
+        return SE3(T)
 
-                print(f"Joint {i}: jnt_dof_id={jnt_dof_id}, joint_id={joint_id}")
-                print(f"Joint {i} limits: pos_limit={pos_limit[:, i]}, vel_limit={vel_limit[:, i]}")
-            else:
-                print(f"Warning: Joint {i} with jnt_dof_id={jnt_dof_id} is out of bounds.")
-        print(pos_limit)
-        return pos_limit, vel_limit
 
     def run(self, target, walk):
         # target pose is a 7D vector [x, y, z, qx, qy, qz, qw]
-        target_pose = target
+        target_pose = self.create_transformation_matrix(target[0]-0.019746263151372886,target[1] - 0.029123672185854297,target[2]-0.32,target[3],target[4],target[5],target[6])
 
+
+        TQQ = self.robot.fkine([0,1.57,1.57,1.570,0])
+        if self.id % 40 == 0:
+            print(TQQ.t, "t=", target_pose.t)
+        self.id +=1
         # Get the Jacobian matrix for the end-effector.
-        J = get_site_jac(
-            self._physics.model.ptr, 
-            self._physics.data.ptr, 
-            self._eef_id,
-        )
-        J = J[:, self._jnt_dof_ids]
-
-        # Get the mass matrix and its inverse for the controlled degrees of freedom (DOF) of the robot.
-        M_full = get_fullM(
-            self._physics.model.ptr, 
-            self._physics.data.ptr,
-        )
-        M = M_full[self._jnt_dof_ids, :][:, self._jnt_dof_ids]
-        Mx, M_inv = task_space_inertia_matrix(M, J)
-
+       
         # Get the joint velocities for the controlled DOF.
-        dq = self._physics.bind(self._joints).qvel
-
-        # Get the end-effector position, orientation matrix, and twist (spatial velocity).
-        ee_pos = self._physics.bind(self._eef_site).xpos
-        ee_quat = mat2quat(self._physics.bind(self._eef_site).xmat.reshape(3, 3))
-        ee_pose = np.concatenate([ee_pos, ee_quat])
-
-        # Calculate the pose error (difference between the target and current pose).
-        pose_err = pose_error(target_pose, ee_pose)
-
+        
         # Initialize the task space control signal (desired end-effector motion).
-        u_task = np.zeros(6)
+        # u_task = np.zeros(6)
+        p=np.zeros(5)
+
+        p[0] = self.pos[1]
+        p[1] = self.pos[0]
+        p[2] = self.pos[2]
+        p[3] = self.pos[3]
+        p[4] = self.pos[4]
+        
 
         # Calculate the task space control signal.
-        u_task += self._scale_signal_vel_limited(pose_err)
+        # sol =  self.robot.ikine_LM(target_pose, q0=p+self.zeros, mask=[1,1,1,0,0,0], slimit=120, ilimit=2, joint_limits=True)
+        
+        
 
         # joint space control signal
-        u = np.zeros(self._dof)
+        # u = np.zeros(self._dof)
         
-        # Add the task space control signal to the joint space control signal
-        u += np.dot(J.T, np.dot(Mx, u_task))
+        # # Add the task space control signal to the joint space control signal
+        # u += np.dot(J.T, np.dot(Mx, u_task))
 
-        # Add damping to joint space control signal
-        u += -self._kv * np.dot(M, dq)
+        # # Add damping to joint space control signal
+        # u += -self._kv * np.dot(M, dq)
 
-        # Add gravity compensation to the target effort
-        u += self._physics.bind(self._joints).qfrc_bias
+        # # Add gravity compensation to the target effort
+        # u += self._physics.bind(self._joints).qfrc_bias
 
-        # Apply soft limiting to avoid joint limits
+        # # Apply soft limiting to avoid joint limits
         # u = self._apply_soft_limits(u, dq)
 
         # Send the target effort to the joint effort controller
-        if not walk:
-            super().run(u)
+       
+     
 
+        if not self.walk:
+            print('on')
+            sol =  self.robot.ikine_LM(target_pose, q0=p+self.zeros, mask=[1,1,1,0,0,0], slimit=50, ilimit=3, joint_limits=True)
+            
+            print(sol)
+            print('ommm')
+            if sol.success:
+                print('sdsds')
+                u =sol.q-self.zeros
+                sr = u[0]
+                sp= u[1]
+                ey = u[2]
+                ep = u[3]
+                ay = u[4]
+                self.pos = [sp,sr,ep,ey,ay]
+                super().run([sp,sr,ep,ey,ay])
+                print('qqqqqqqqqqqqq',self.pos)
+
+            else:
+                self.walk=True
+                # self.pos = [0,0, 1.57, 0, 0]
+               
+
+
+                super().run(np.zeros(5))
         else:
-            super().run(np.zeros_like(u))
-        print(u)
-    def _scale_signal_vel_limited(self, u_task: np.ndarray) -> np.ndarray:
-        """
-        Scale the control signal such that the arm isn't driven to move faster in position or orientation than the specified vmax values.
-
-        Parameters:
-            u_task (numpy.ndarray): The task space control signal.
-
-        Returns:
-            numpy.ndarray: The scaled task space control signal.
-        """
-        norm_xyz = np.linalg.norm(u_task[:3])
-        norm_abg = np.linalg.norm(u_task[3:])
-        scale = np.ones(6)
-        if norm_xyz > self._sat_gain_xyz:
-            scale[:3] *= self._scale_xyz / norm_xyz
-        if norm_abg > self._sat_gain_abg:
-            scale[3:] *= self._scale_abg / norm_abg
-
-        return self._kv * scale * self._lamb * u_task
-
-    def _apply_soft_limits(self, control_effort, joint_velocities):
-        """
-        Apply soft limiting to the control effort to avoid joint limits.
-
-        Parameters:
-            control_effort (numpy.ndarray): The joint space control signal.
-            joint_velocities (numpy.ndarray): The joint velocities.
-
-        Returns:
-            numpy.ndarray: The scaled joint space control signal.
-        """
-        epsilon = 1e-5  # Small value to prevent division by zero
-        for i in range(self._dof):
-            pos = self._physics.data.qpos[self._jnt_dof_ids[i]]
-            vel = joint_velocities[i]
-
-            # Scale control effort based on position limits
-            pos_range = self._pos_limit[1, i] - self._pos_limit[0, i]
-            if pos_range > epsilon:
-                if pos < self._pos_limit[0, i] + 0.1 * pos_range:
-                    control_effort[i] *= (pos - self._pos_limit[0, i]) / (0.1 * pos_range + epsilon)
-                elif pos > self._pos_limit[1, i] - 0.1 * pos_range:
-                    control_effort[i] *= (self._pos_limit[1, i] - pos) / (0.1 * pos_range + epsilon)
-
-            # Scale control effort based on velocity limits
-            # vel_range = self._vel_limit[1, i] - self._vel_limit[0, i]
-            # if vel_range > epsilon:
-            #     if vel < self._vel_limit[0, i]:
-            #         control_effort[i] *= (vel - self._vel_limit[0, i]) / (self._vel_limit[0, i] + epsilon)
-            #     elif vel > self._vel_limit[1, i]:
-            #         control_effort[i] *= (self._vel_limit[1, i] - vel) / (self._vel_limit[1, i] + epsilon)
-
-        return control_effort
+             if self.id % 150 == 0:
+                    
+                    sol =  self.robot.ikine_LM(target_pose, q0=p+self.zeros, mask=[1,1,1,0,0,0], slimit=180, ilimit=4, joint_limits=True)
+                    print(sol)
+                    if sol.success:
+                        u =sol.q-self.zeros
+                        sr = u[0]
+                        sp= u[1]
+                        ey = u[2]
+                        ep = u[3]
+                        ay = u[4]
+                        self.pos = [sp,sr,ep,ey,ay]
+                        print('off')
+                        self.walk=False

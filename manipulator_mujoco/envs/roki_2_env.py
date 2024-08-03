@@ -46,7 +46,7 @@ class Roki2Env(gym.Env):
         self._robot = Roki2()
 
         # Attach robot to arena
-        self._arena.attach_free(self._robot.mjcf_model)
+        self._arena.attach(self._robot.mjcf_model)
 
         # Generate model
         self._physics = mjcf.Physics.from_mjcf_model(self._arena.mjcf_model)
@@ -64,26 +64,26 @@ class Roki2Env(gym.Env):
             vmax_xyz=3.0,
             vmax_abg=2.0,
         )
-        self.right_arm_controller = OperationalSpaceController(
-            self._physics, 
-            self._robot.right_arm_joints, 
-            self._robot._arm_eef_site2,
-            min_effort=np.array([-3.0] * len(self._robot.right_arm_joints)),
-            max_effort=np.array([3.0] * len(self._robot.right_arm_joints)),
-            kp=300,
-            ko=150,
-            kv=400,
-            vmax_xyz=3.0,
-            vmax_abg=2.0,
-        )
+        # self.right_arm_controller = OperationalSpaceController(
+        #     self._physics, 
+        #     self._robot.right_arm_joints, 
+        #     self._robot._arm_eef_site2,
+        #     min_effort=np.array([-3.0] * len(self._robot.right_arm_joints)),
+        #     max_effort=np.array([3.0] * len(self._robot.right_arm_joints)),
+        #     kp=300,
+        #     ko=1,
+        #     kv=400,
+        #     vmax_xyz=3.0,
+        #     vmax_abg=2.0,
+        # )
 
         self._balance_controller = BalanceController(
             self._physics, 
             self._robot._hip_joints, 
             self._robot._knee_joints, 
             self._robot._ankle_joints, 
-            kp_hip=0.005,
-            kd_hip=0.001,
+            kp_hip=0.001,
+            kd_hip=0.0000001,
             kp_knee=0.01,
             kd_knee=0.00001,
             kp_ankle=0.01,
@@ -91,7 +91,7 @@ class Roki2Env(gym.Env):
             target=self._target.get_mocap_pose(self._physics),
         )
         
-        self._humanoid_controller = HumanoidController(self.left_arm_controller,self.right_arm_controller, self._balance_controller)
+        self._humanoid_controller = HumanoidController(self.left_arm_controller,None, self._balance_controller)
 
         # For GUI and time keeping
         self._timestep = self._physics.model.opt.timestep
@@ -113,7 +113,7 @@ class Roki2Env(gym.Env):
         with self._physics.reset_context():
             # Put arm in a reasonable starting position
             self._physics.bind(self._robot.left_arm_joints).qpos = np.array([0,0, 0,0 ,0])
-            self._physics.bind(self._robot.right_arm_joints).qpos = np.array([0, 0, -1, -1, 0])
+            # self._physics.bind(self._robot.right_arm_joints).qpos = np.array([0, 0, -1, -1, 0])
 
             # Put target in a reasonable starting position
             self._target.set_mocap_pose(self._physics, position=[0.15, 0., 0.25], quaternion=[1, 0, 0, 0])

@@ -23,6 +23,7 @@ class Target(object):
             rgba=[1, 0, 0, 0.2],
             conaffinity=0,
             contype=0,
+            mass="0.0000001"
         )
 
     @property

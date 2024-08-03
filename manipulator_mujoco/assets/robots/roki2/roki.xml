@@ -487,8 +487,9 @@
 									<geom pos="0.0620043 -0.087992 -0.143474" quat="-0.116706 -0.697409 0.70708 -0.006171" mesh="Carbon_Mov_Finger_021_v1_1_mesh_collision_18"  class="collision" />
 									<geom pos="0.0620043 -0.087992 -0.143474" quat="-0.116706 -0.697409 0.70708 -0.006171" mesh="Carbon_Mov_Finger_021_v1_1_mesh_collision_19"  class="collision" />
 									<geom pos="0.0620043 -0.087992 -0.143474" quat="-0.116706 -0.697409 0.70708 -0.006171" mesh="Carbon_Mov_Finger_021_v1_1_mesh_collision_20"  class="collision" />
+									<site name="right_eef_site" pos="0.042681 -0.064994 -0.115186"/>
+
 								</body>
-								<site name="right_eef_site" pos="0.042681 -0.064994 -0.115186"/>
 								
 								<joint name="right_arm_yaw_joint" type="hinge" pos="0.042681 -0.075883 -0.062343" range="-3 3" axis="-0.0 -0.173648 -0.984808" />
 								<geom pos="0.045356 -0.088373 -0.133175" quat="0.704416 -0.061628 0.704416 -0.061628" mesh="arm_v1_1_mesh_0" material="Carbon_Fiber_-_Plain" class="visual" />

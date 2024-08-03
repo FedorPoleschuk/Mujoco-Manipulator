@@ -12,6 +12,7 @@ LEFT_ARM_JOINTS = (
     'left_elbow_pitch_joint',
     'left_elbow_yaw_joint',
     'left_arm_yaw_joint',
+    # 'left_mimic_joint',
     
     # 'right_shoulder_roll_joint',
     # 'right_shoulder_pitch_joint',
