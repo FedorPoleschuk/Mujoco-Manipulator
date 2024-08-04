@@ -8,7 +8,7 @@ from gymnasium import spaces
 from manipulator_mujoco.arenas import StandardArena
 from manipulator_mujoco.robots import Roki2
 from manipulator_mujoco.mocaps import Target
-from manipulator_mujoco.controllers import OperationalSpaceController, BalanceController, HumanoidController
+from manipulator_mujoco.controllers import IKArm, BalanceController, HumanoidController
 import mujoco
 
 class Roki2Env(gym.Env):
@@ -46,35 +46,26 @@ class Roki2Env(gym.Env):
         self._robot = Roki2()
 
         # Attach robot to arena
-        self._arena.attach(self._robot.mjcf_model)
+        self._arena.attach_free(self._robot.mjcf_model)
 
         # Generate model
         self._physics = mjcf.Physics.from_mjcf_model(self._arena.mjcf_model)
-
+        print(self._robot.servo_map)
         # Set up controllers
-        self.left_arm_controller = OperationalSpaceController(
+        self.left_arm_controller = IKArm(
             self._physics, 
-            self._robot.left_arm_joints, 
-            self._robot._arm_eef_site1,
+            [], #self._robot.left_arm_joints, 
+            [], #self._robot.right_arm_joints, 
             min_effort=np.array([-150.0] * len(self._robot.left_arm_joints)),
             max_effort=np.array([150.0] * len(self._robot.left_arm_joints)),
-            kp=300,
-            ko=150,
-            kv=100,
-            vmax_xyz=3.0,
-            vmax_abg=2.0,
+            servo_map = self._robot.servo_map
         )
-        # self.right_arm_controller = OperationalSpaceController(
+        # self.right_arm_controller = IKArm(
         #     self._physics, 
         #     self._robot.right_arm_joints, 
         #     self._robot._arm_eef_site2,
         #     min_effort=np.array([-3.0] * len(self._robot.right_arm_joints)),
         #     max_effort=np.array([3.0] * len(self._robot.right_arm_joints)),
-        #     kp=300,
-        #     ko=1,
-        #     kv=400,
-        #     vmax_xyz=3.0,
-        #     vmax_abg=2.0,
         # )
 
         self._balance_controller = BalanceController(

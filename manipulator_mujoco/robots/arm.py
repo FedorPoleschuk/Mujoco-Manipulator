@@ -3,7 +3,7 @@ from manipulator_mujoco.utils.transform_utils import mat2quat
 import numpy as np
 
 class Arm():
-    def __init__(self, xml_path, eef_site_name1, eef_site_name2, attachment_site_name, left_arm_joint_names=None, right_arm_joint_names=None, hip_joint_names=None, knee_joint_names=None, ankle_joint_names=None, name: str=None):
+    def __init__(self, xml_path, eef_site_name1, eef_site_name2, attachment_site_name, left_arm_joint_names=None, right_arm_joint_names=None, hip_joint_names=None, knee_joint_names=None, ankle_joint_names=None, name: str=None, servo_map=None):
         self._mjcf_root = mjcf.from_path(xml_path)
         if name:
             self._mjcf_root.model = name
@@ -17,6 +17,7 @@ class Arm():
 
         self._arm_eef_site1 = self._mjcf_root.find('site', eef_site_name1)
         self._arm_eef_site2 = self._mjcf_root.find('site', eef_site_name2)
+        self._servo_map = servo_map
 
         self._attachment_site = self._mjcf_root.find('site', attachment_site_name)
 
@@ -49,6 +50,11 @@ class Arm():
     def eef_site2(self):
         """Wrist site of the arm (attachment point for the hand)."""
         return self._arm_eef_site2
+    
+    @property
+    def servo_map(self):
+        """Wrist site of the arm (attachment point for the hand)."""
+        return self._servo_map
 
     def attach_tool(self, child, pos: list=[0, 0, 0], quat: list=[1, 0, 0, 0]) -> mjcf.Element:
         frame = self._attachment_site.attach(child)

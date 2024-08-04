@@ -191,10 +191,10 @@ class BalanceController:
             
 
             # self.update_value("trunkXOffset",np.clip(self.params.trunkXOffset + x_torque,-0.0,0.03))
-            self.update_value("trunkYOffset",np.clip(self.params.trunkYOffset + y_torque,-0.03,0.03))
-            # self.update_value("trunkZOffset",np.clip(self.params.trunkZOffset + z_torque,0.01,0.04))
-            # self.update_value("trunkPitch",np.clip(self.params.trunkPitch + x_torque,-0.7,0.7))
-            self.update_value("trunkXOffset",np.clip(self.params.trunkXOffset + x_torque,-0.04,0.04))
+            # self.update_value("trunkYOffset",np.clip(self.params.trunkYOffset + y_torque,-0.03,0.03))
+            # # self.update_value("trunkZOffset",np.clip(self.params.trunkZOffset + z_torque,0.01,0.04))
+            # # self.update_value("trunkPitch",np.clip(self.params.trunkPitch + x_torque,-0.7,0.7))
+            # self.update_value("trunkXOffset",np.clip(self.params.trunkXOffset + x_torque,-0.04,0.04))
        
         
 
